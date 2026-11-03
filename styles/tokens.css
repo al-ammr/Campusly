@@ -1,0 +1,197 @@
+/**
+ * Campusly Design System Tokens
+ * Source of Truth: D04 Brand Assets and D03 UI/UX Specification (Tuscan Academic Heritage)
+ */
+
+:root {
+  /* Colors - Light Theme */
+  --color-brand: #9F3C16;
+  --color-brand-strong: #A8431F;
+  --color-secondary: #2C402E;
+  --color-secondary-light: #4A634E;
+  --color-accent: #E8B53D;
+  --color-text: #1F1C18;
+  --color-text-muted: #4A453E;
+  --color-surface: #FCF9F4;
+  --color-surface-container: #F3EFEA;
+  --color-border: #E3DCD2;
+  --color-raised: #FFFFFF;
+  --color-success: #2B6E3F;
+  --color-danger: #BA1A1A;
+  --color-info: #1D5FD1;
+  --color-focus-ring: #1D5FD1;
+
+  /* Category Palette - Light */
+  --cat-tech-tint: #E6EEFC;
+  --cat-tech-ink: #1D4FA8;
+  --cat-business-tint: #FFE9A8;
+  --cat-business-ink: #6B4E00;
+  --cat-env-tint: #E4F3EA;
+  --cat-env-ink: #1F5C38;
+  --cat-acad-tint: #E7E3FA;
+  --cat-acad-ink: #4B3B9A;
+  --cat-lead-tint: #FCE7DB;
+  --cat-lead-ink: #9A3412;
+  --cat-arts-tint: #FBE3F0;
+  --cat-arts-ink: #9C2A66;
+  --cat-sports-tint: #DDF3F3;
+  --cat-sports-ink: #0F5F63;
+  --cat-science-tint: #E8ECD9;
+  --cat-science-ink: #4A5A12;
+  --cat-health-tint: #FDE4E4;
+  --cat-health-ink: #A12A2A;
+  --cat-culture-tint: #F3E6D4;
+  --cat-culture-ink: #6B4220;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Border Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* Elevation */
+  --elevation-0: none;
+  --elevation-1: 0 1px 3px 0 rgba(31, 28, 24, 0.1);
+  --elevation-2: 0 8px 24px 0 rgba(31, 28, 24, 0.16);
+
+  /* Motion */
+  --motion-fast: 120ms ease-out;
+  --motion-base: 200ms ease-in-out;
+  --motion-slow: 320ms ease-in-out;
+  --motion-star: 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Layering / Z-Index */
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-nav: 20;
+  --z-sheet: 30;
+  --z-dialog: 40;
+  --z-toast: 50;
+
+  /* Typography Stacks */
+  --font-family-display: var(--font-playfair, 'Playfair Display'), Georgia, Garamond, serif;
+  --font-family-body: var(--font-jakarta, 'Plus Jakarta Sans'), system-ui, -apple-system, sans-serif;
+}
+
+/* Dark Theme Overrides */
+[data-theme='dark'] {
+  --color-brand: #FF8A4C;
+  --color-brand-strong: #FFB085;
+  --color-secondary: #4E6450;
+  --color-secondary-light: #678269;
+  --color-accent: #F2A900;
+  --color-text: #F6EDE3;
+  --color-text-muted: #B8AA9E;
+  --color-surface: #16120F;
+  --color-surface-container: #231D19;
+  --color-border: #3A322C;
+  --color-raised: #2E2621;
+  --color-success: #5FBF85;
+  --color-danger: #FF8A80;
+  --color-info: #7AA7FF;
+  --color-focus-ring: #7AA7FF;
+
+  /* Category Dark Overrides */
+  --cat-tech-tint: #E6EEFC;
+  --cat-tech-ink: #1D4FA8;
+  --cat-tech-bg: #212E4B;
+
+  --cat-business-tint: #FFE9A8;
+  --cat-business-ink: #6B4E00;
+  --cat-business-bg: #3C2E10;
+
+  --cat-env-tint: #E4F3EA;
+  --cat-env-ink: #1F5C38;
+  --cat-env-bg: #223324;
+
+  --cat-acad-tint: #E7E3FA;
+  --cat-acad-ink: #4B3B9A;
+  --cat-acad-bg: #312846;
+
+  --cat-lead-tint: #FCE7DB;
+  --cat-lead-ink: #9A3412;
+  --cat-lead-bg: #4D2517;
+
+  --cat-arts-tint: #FBE3F0;
+  --cat-arts-ink: #9C2A66;
+  --cat-arts-bg: #4D2234;
+
+  --cat-sports-tint: #DDF3F3;
+  --cat-sports-ink: #0F5F63;
+  --cat-sports-bg: #1C3433;
+
+  --cat-science-tint: #E8ECD9;
+  --cat-science-ink: #4A5A12;
+  --cat-science-bg: #313217;
+
+  --cat-health-tint: #FDE4E4;
+  --cat-health-ink: #A12A2A;
+  --cat-health-bg: #4F221F;
+
+  --cat-culture-tint: #F3E6D4;
+  --cat-culture-ink: #6B4220;
+  --cat-culture-bg: #3C2A1B;
+
+  --elevation-1: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --elevation-2: 0 8px 24px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* System Preference Dark when data-theme is unset */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-brand: #FF8A4C;
+    --color-brand-strong: #FFB085;
+    --color-secondary: #4E6450;
+    --color-secondary-light: #678269;
+    --color-accent: #F2A900;
+    --color-text: #F6EDE3;
+    --color-text-muted: #B8AA9E;
+    --color-surface: #16120F;
+    --color-surface-container: #231D19;
+    --color-border: #3A322C;
+    --color-raised: #2E2621;
+    --color-success: #5FBF85;
+    --color-danger: #FF8A80;
+    --color-info: #7AA7FF;
+    --color-focus-ring: #7AA7FF;
+
+    --cat-tech-bg: #212E4B;
+    --cat-business-bg: #3C2E10;
+    --cat-env-bg: #223324;
+    --cat-acad-bg: #312846;
+    --cat-lead-bg: #4D2517;
+    --cat-arts-bg: #4D2234;
+    --cat-sports-bg: #1C3433;
+    --cat-science-bg: #313217;
+    --cat-health-bg: #4F221F;
+    --cat-culture-bg: #3C2A1B;
+
+    --elevation-1: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+    --elevation-2: 0 8px 24px 0 rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Accessibility: Reduced Motion (UI-202) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .motion-fade {
+    transition: opacity 100ms ease !important;
+  }
+}

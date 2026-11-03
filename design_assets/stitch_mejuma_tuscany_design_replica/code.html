@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "inverse-primary": "#ffb59c", "inverse-surface": "#31302d", "outline-variant": "#dec0b7", "secondary-fixed": "#d1e9cf", "surface": "#fcf9f4", "on-secondary-fixed-variant": "#374c39", "on-primary-container": "#fffbff", "inverse-on-surface": "#f3f0eb", "background": "#fcf9f4", "secondary-container": "#d1e9cf", "terracotta-deep": "#A8431F", "on-error": "#ffffff", "verified-green": "#2B6E3F", "on-tertiary-fixed": "#261a00", "tertiary-container": "#956e00", "surface-container-high": "#ebe8e3", "surface-container-low": "#f6f3ee", "surface-tint": "#a23e18", "surface-variant": "#e5e2dd", "tertiary-fixed-dim": "#f3bf46", "surface-container-lowest": "#ffffff", "tertiary": "#765700", "on-surface": "#1c1c19", "surface-dim": "#dcdad5", "error-container": "#ffdad6", "ink-charcoal": "#1F1C18", "cypress-light": "#4A634E", "ink-muted": "#4A453E", "on-primary": "#ffffff", "on-primary-fixed-variant": "#822801", "on-tertiary-fixed-variant": "#5c4300", "stone-surface": "#F3EFEA", "primary": "#9f3c16", "on-tertiary-container": "#fffbff", "primary-fixed-dim": "#ffb59c", "secondary-fixed-dim": "#b5cdb4", "surface-bright": "#fcf9f4", "secondary": "#4e6450", "outline": "#8a726a", "on-surface-variant": "#57423b", "on-secondary": "#ffffff", "primary-container": "#bf542c", "on-tertiary": "#ffffff", "on-secondary-fixed": "#0c2010", "on-error-container": "#93000a", "error": "#ba1a1a", "primary-fixed": "#ffdbcf", "surface-container-highest": "#e5e2dd", "on-secondary-container": "#546a55", "tertiary-fixed": "#ffdf9f", "surface-container": "#f0ede9", "stone-border": "#E3DCD2", "on-background": "#1c1c19", "on-primary-fixed": "#390c00" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin-tablet": "2rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "margin-desktop": "3rem", "gutter-desktop": "1.5rem", "gutter": "1rem", "space-xs": "0.25rem", "space-xl": "2.5rem", "margin": "1rem" }, fontFamily: { "title-md": ["Plus Jakarta Sans"], "headline-md": ["Playfair Display"], "title-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Playfair Display"], "title-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "display-lg": ["Playfair Display"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Playfair Display"], "headline-sm": ["Playfair Display"], "label-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-lg": ["Playfair Display"] }, fontSize: { "title-md": ["16px", { lineHeight: "22px", fontWeight: "600" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }], "title-sm": ["14px", { lineHeight: "20px", fontWeight: "600" }], "display-lg-mobile": ["34px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }], "title-lg": ["18px", { lineHeight: "24px", fontWeight: "700" }], "body-sm": ["12px", { lineHeight: "18px", fontWeight: "400" }], "label-md": ["13px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "22px", fontWeight: "400" }], "headline-lg-mobile": ["26px", { lineHeight: "32px", fontWeight: "600" }], "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "700" }], "body-lg": ["16px", { lineHeight: "26px", fontWeight: "400" }], "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }] } } } };</script><style>@layer base { html, body { width: 100%; margin: 0; padding: 0; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md text-body-md min-h-full flex flex-col antialiased selection:bg-primary/20 selection:text-primary"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(31,28,24,0.04)] pt-safe"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="Campusly Logo" class="h-8 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1iBNhEaxT82EJ5m-CawVsdX6W3Tn-a38O0pERE0Fy2qgzJY_3TqSo1tqdA8BUfcOySB650fryYkpnkaY5r12L8RjDigT2MPXf00mlRcL6cqvRcDlmMC-LhpLv1Ko7EJb79quXjZWRzUaLjrf-gd2EvF0pOIfGBY0sXi33qKCUYji16ZvVecXBPOijY4HMP8nEUHyIPztIbIpZbv28xx_MKo1VooczF3dXYSCte-iS"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-ink-charcoal tracking-tight truncate">Campusly</span><span class="font-body-sm text-body-sm text-outline-variant font-medium">•</span><span class="font-title-sm text-title-sm text-ink-muted truncate">Explore And Discover</span></div><button class="flex items-center gap-1 text-secondary hover:text-cypress-light text-left transition-colors min-h-[20px]" type="button"><span class="material-symbols-outlined text-[14px] text-terracotta-deep">location_on</span><span class="font-label-sm text-label-sm font-semibold tracking-wide uppercase text-cypress-light">ABU Zaria</span><span class="material-symbols-outlined text-[14px] text-outline">keyboard_arrow_down</span></button></div></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="Search" class="w-11 h-11 flex items-center justify-center rounded-full text-ink-muted hover:text-primary hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">search</span></button><button aria-label="Share Campusly" class="w-11 h-11 flex items-center justify-center rounded-full text-ink-muted hover:text-primary hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">share</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-[0_1px_4px_rgba(159,60,22,0.25)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 w-full bg-surface pt-16 pb-24 flex flex-col"><div class="flex flex-col w-full">
+<!-- Campus Academic Seal Banner & Welcome Pill -->
+<section class="px-gutter pt-4 pb-2">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-terracotta-deep" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-cypress-light">Ahmadu Bello University, Zaria</span>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/60 text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-verified-green animate-pulse"></span>
+<span class="font-label-sm text-label-sm">Session 2025/2026</span>
+</div>
+</div>
+</section>
+<!-- Editorial Hero Section -->
+<section class="px-gutter pt-3 pb-5">
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low p-5 shadow-sm">
+<!-- Decorative Tuscan Arch Watermark -->
+<div class="absolute -right-6 -bottom-8 opacity-10 pointer-events-none text-primary">
+<svg fill="none" height="180" stroke="currentColor" stroke-width="2.5" viewbox="0 0 100 120" width="160">
+<path d="M 10 110 V 50 A 40 40 0 0 1 90 50 V 110"></path>
+<path d="M 22 110 V 50 A 28 28 0 0 1 78 50 V 110"></path>
+<path d="M 34 110 V 50 A 16 16 0 0 1 66 50 V 110"></path>
+<line x1="2" x2="98" y1="110" y2="110"></line>
+</svg>
+</div>
+<div class="relative z-10 flex flex-col gap-2.5">
+<span class="font-label-sm text-label-sm uppercase text-terracotta-deep tracking-widest">Collegiate Almanac &amp; Registry</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-ink-charcoal tracking-tight">
+          Discover More Beyond the Classroom
+        </h1>
+<p class="font-body-md text-body-md text-ink-muted leading-relaxed">
+          Find clubs, events, opportunities, and student enterprises in one place. No student login required.
+        </p>
+<!-- Search Bar with Tactile Filter Trigger -->
+<div class="mt-2 flex items-center gap-2">
+<div class="flex-1 flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-outline text-[20px]">search</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-ink-charcoal placeholder:text-outline focus:outline-none" id="main-search-input" placeholder="Search clubs, hackathons, societies, or keywords..." type="text"/>
+<button aria-label="Voice Search" class="text-outline hover:text-primary transition-colors flex items-center" type="button">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+</button>
+</div>
+<button aria-label="Search Filters" class="w-11 h-11 rounded-lg bg-surface-container flex items-center justify-center text-ink-charcoal hover:bg-surface-container-high transition-colors shadow-sm shrink-0" type="button">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+<!-- Action CTAs -->
+<div class="mt-2.5 flex items-center gap-2.5">
+<a class="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-lg bg-primary text-on-primary font-title-sm text-title-sm shadow-sm active:bg-terracotta-deep transition-all" href="#communities-section">
+<span class="material-symbols-outlined text-[18px]">explore</span>
+<span>Explore Communities</span>
+</a>
+<button class="inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-lg bg-surface-container text-ink-charcoal font-title-sm text-title-sm hover:bg-surface-container-high transition-colors" onclick="document.getElementById('org-banner').scrollIntoView({behavior: 'smooth'})" type="button">
+<span class="material-symbols-outlined text-[18px] text-cypress-light">add_circle</span>
+<span>List Yours</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- "I want to..." Intention Chips -->
+<section class="py-2 flex flex-col gap-2">
+<div class="px-gutter flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-cypress-light">I want to...</span>
+<span class="font-body-sm text-body-sm text-ink-muted">Tap to filter</span>
+</div>
+<div class="flex gap-2 overflow-x-auto px-gutter no-scrollbar py-1" id="intention-chips">
+<button class="intention-chip shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-all flex items-center gap-1" data-tag="all" type="button">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+<span>All</span>
+</button>
+<button class="intention-chip shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container text-ink-muted hover:text-ink-charcoal transition-all flex items-center gap-1" data-tag="Learn" type="button">
+<span class="material-symbols-outlined text-[14px] text-cypress-light">menu_book</span>
+<span>Learn</span>
+</button>
+<button class="intention-chip shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container text-ink-muted hover:text-ink-charcoal transition-all flex items-center gap-1" data-tag="Network" type="button">
+<span class="material-symbols-outlined text-[14px] text-terracotta-deep">diversity_3</span>
+<span>Network</span>
+</button>
+<button class="intention-chip shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container text-ink-muted hover:text-ink-charcoal transition-all flex items-center gap-1" data-tag="Lead" type="button">
+<span class="material-symbols-outlined text-[14px] text-cypress-light">flag</span>
+<span>Lead</span>
+</button>
+<button class="intention-chip shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container text-ink-muted hover:text-ink-charcoal transition-all flex items-center gap-1" data-tag="Volunteer" type="button">
+<span class="material-symbols-outlined text-[14px] text-verified-green">volunteer_activism</span>
+<span>Volunteer</span>
+</button>
+<button class="intention-chip shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container text-ink-muted hover:text-ink-charcoal transition-all flex items-center gap-1" data-tag="Build" type="button">
+<span class="material-symbols-outlined text-[14px] text-terracotta-deep">terminal</span>
+<span>Build</span>
+</button>
+<button class="intention-chip shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container text-ink-muted hover:text-ink-charcoal transition-all flex items-center gap-1" data-tag="Compete" type="button">
+<span class="material-symbols-outlined text-[14px] text-tertiary">emoji_events</span>
+<span>Compete</span>
+</button>
+<button class="intention-chip shrink-0 px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container text-ink-muted hover:text-ink-charcoal transition-all flex items-center gap-1" data-tag="Create" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">palette</span>
+<span>Create</span>
+</button>
+</div>
+</section>
+<!-- 10 Campus Categories Section -->
+<section class="px-gutter pt-5 pb-3">
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-ink-charcoal">Campus Faculties &amp; Fields</h2>
+<p class="font-body-sm text-body-sm text-ink-muted">Explore guilds, chartered chapters &amp; societies</p>
+</div>
+<span class="font-label-sm text-label-sm text-terracotta-deep font-semibold">10 Fields</span>
+</div>
+<!-- Scrollable Categories Rail -->
+<div class="flex gap-3 overflow-x-auto no-scrollbar -mx-gutter px-gutter pb-2">
+<!-- 1: Tech -->
+<div class="shrink-0 w-36 p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-ink-muted block">28 Guilds</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal leading-tight block">Technology &amp; Digital</span>
+</div>
+</div>
+<!-- 2: Entrepreneurship -->
+<div class="shrink-0 w-36 p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-cypress-light mb-3">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-ink-muted block">19 Guilds</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal leading-tight block">Enterprise &amp; Business</span>
+</div>
+</div>
+<!-- 3: Sustainability -->
+<div class="shrink-0 w-36 p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-verified-green mb-3">
+<span class="material-symbols-outlined text-[20px]">eco</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-ink-muted block">12 Guilds</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal leading-tight block">Sustainability &amp; Ecology</span>
+</div>
+</div>
+<!-- 4: Academic & Professional -->
+<div class="shrink-0 w-36 p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary-container mb-3">
+<span class="material-symbols-outlined text-[20px]">school</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-ink-muted block">44 Guilds</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal leading-tight block">Academic Honors</span>
+</div>
+</div>
+<!-- 5: Leadership -->
+<div class="shrink-0 w-36 p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-secondary mb-3">
+<span class="material-symbols-outlined text-[20px]">military_tech</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-ink-muted block">16 Guilds</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal leading-tight block">Leadership &amp; Civic</span>
+</div>
+</div>
+<!-- 6: Creative Arts -->
+<div class="shrink-0 w-36 p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-terracotta-deep mb-3">
+<span class="material-symbols-outlined text-[20px]">theater_comedy</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-ink-muted block">15 Guilds</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal leading-tight block">Arts &amp; Media</span>
+</div>
+</div>
+<!-- 7: Sports -->
+<div class="shrink-0 w-36 p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-cypress-light mb-3">
+<span class="material-symbols-outlined text-[20px]">sports_soccer</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-ink-muted block">22 Guilds</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal leading-tight block">Sports &amp; Athletics</span>
+</div>
+</div>
+<!-- 8: Science & Research -->
+<div class="shrink-0 w-36 p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-tertiary mb-3">
+<span class="material-symbols-outlined text-[20px]">biotech</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-ink-muted block">18 Guilds</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal leading-tight block">Science &amp; Research</span>
+</div>
+</div>
+<!-- 9: Health & Wellbeing -->
+<div class="shrink-0 w-36 p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-verified-green mb-3">
+<span class="material-symbols-outlined text-[20px]">vital_signs</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-ink-muted block">11 Guilds</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal leading-tight block">Health &amp; Wellness</span>
+</div>
+</div>
+<!-- 10: Culture -->
+<div class="shrink-0 w-36 p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-ink-muted block">31 Guilds</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal leading-tight block">Culture &amp; Diaspora</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Communities Section -->
+<section class="px-gutter pt-4 pb-4" id="communities-section">
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-ink-charcoal">Featured Student Guilds</h2>
+<p class="font-body-sm text-body-sm text-ink-muted">Vetted and verified on campus</p>
+</div>
+<a class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wide" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-3.5">
+<!-- Community Card 1: GDG ABU Zaria -->
+<div class="rounded-xl bg-surface-container-low p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest overflow-hidden shadow-sm shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Google Developer Student Club university chapter emblem with colorful geometric brackets on warm natural parchment backdrop, architectural campus illustration in soft terracotta and olive tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs43b6fYRd05Y1JkQgwDeRu5JV_gZFLdTeVRqJBak3YwzE9-KpOPFaSRSNATCTXrGWV7-2C26I4J0BoyCr6KfcmBrztHqRo44Eebl5hOKzRMyjtdsBXkmPB18giQcRv8dhgyuxvi0rJK7BkCf3z1epIdqewZjbpddYMZq503AGnYteJEr_3mscTajzh4UleGbd-7D2ScR73wQKNtNRKLcOkeXPUTkUKm0ceaFvfCEX"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<h3 class="font-title-md text-title-md text-ink-charcoal leading-tight">GDG on Campus ABU Zaria</h3>
+<span class="material-symbols-outlined text-verified-green text-[18px]" title="Verified Student Chapter">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-ink-muted">Tech &amp; Open Source • Faculty of Engineering</span>
+</div>
+</div>
+<span class="shrink-0 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold uppercase tracking-wider">
+            Recruiting
+          </span>
+</div>
+<p class="mt-2.5 font-body-md text-body-md text-ink-muted line-clamp-2">
+          Hands-on technical workshops, cloud study jams, and engineering pipelines designed for university developers.
+        </p>
+<div class="mt-3 pt-3 flex items-center justify-between text-ink-muted bg-surface-container/40 -mx-4 -mb-4 px-4 py-2.5 rounded-b-xl">
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-cypress-light">groups</span>
+<span class="font-body-sm text-body-sm font-medium">1,420 members</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-terracotta-deep">schedule</span>
+<span class="font-body-sm text-body-sm">Bi-weekly Sat</span>
+</div>
+</div>
+<button class="px-3 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold active:opacity-90" type="button">
+            Join Chapter
+          </button>
+</div>
+</div>
+<!-- Community Card 2: Enactus ABU -->
+<div class="rounded-xl bg-surface-container-low p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest overflow-hidden shadow-sm shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Social entrepreneurship student guild crest showing stylized seedling rising between classical collegiate columns in terracotta ink on creamy textured card stock." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQZgYum3n96CFf9zvaMDeG9lxDg4HIo4P0k2F_YYZzZZyX_aCMRtsOhYjj67BolOr6xewvfTGib6U6rW6yNm9zTCtDTH_9vBDOYZoOiaXFBOYAuEFkTyH4J-SnLRKyQH31SY1NeWinKeIY5J362Qs7xSsMu4DpyVJrizREW6TcSBRvRZf0FMOQ9UWQ6t2hgud7rBLxGhX0Ts1nkc1NpwYbsRnaWOovkYR-_9EQcxkX"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<h3 class="font-title-md text-title-md text-ink-charcoal leading-tight">Enactus ABU</h3>
+<span class="material-symbols-outlined text-verified-green text-[18px]">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-ink-muted">Social Enterprise &amp; Leadership • Samaru Main</span>
+</div>
+</div>
+<span class="shrink-0 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold uppercase tracking-wider">
+            Recruiting
+          </span>
+</div>
+<p class="mt-2.5 font-body-md text-body-md text-ink-muted line-clamp-2">
+          Empowering university minds to develop sustainable community enterprises, agritech ventures, and social projects.
+        </p>
+<div class="mt-3 pt-3 flex items-center justify-between text-ink-muted bg-surface-container/40 -mx-4 -mb-4 px-4 py-2.5 rounded-b-xl">
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-cypress-light">groups</span>
+<span class="font-body-sm text-body-sm font-medium">680 members</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-terracotta-deep">schedule</span>
+<span class="font-body-sm text-body-sm">Weekly Thu</span>
+</div>
+</div>
+<button class="px-3 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold active:opacity-90" type="button">
+            Join Chapter
+          </button>
+</div>
+</div>
+<!-- Community Card 3: Society of Petroleum Engineers (SPE) -->
+<div class="rounded-xl bg-surface-container-low p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest overflow-hidden shadow-sm shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Professional petroleum engineers student chapter emblem with geometric compass and energy flame in rich earth tones, sepia textured paper background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBal7CRNvcIh_8LDVHiBKhIhBQY7JEGcgs04irbIF5TjkNapHfqNaoaffIw1Dk2L3SO3nF6b5m895P1Gtf8WNs5NhWyXrB2tiGIl-CSJZPsgoRfzji7wttKmNjXZ3GcKX_yQwJkAmQKNppTzf2tqC5Of6_27wQr93cORDTJUruCd9_4hq6qe932eIj0gAazq_FWcr8_xP3t7Y6S-8DdwX6ccvDEiEVG65WfHxLbc3lC"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<h3 class="font-title-md text-title-md text-ink-charcoal leading-tight">SPE Student Chapter</h3>
+<span class="material-symbols-outlined text-verified-green text-[18px]">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-ink-muted">Energy &amp; Geology • Chemical Eng Dept</span>
+</div>
+</div>
+<span class="shrink-0 px-2 py-0.5 rounded-full bg-surface-container text-ink-muted font-label-sm text-label-sm font-bold uppercase tracking-wider">
+            Active
+          </span>
+</div>
+<p class="mt-2.5 font-body-md text-body-md text-ink-muted line-clamp-2">
+          Connecting chemical, mechanical, and geological engineering students with energy transitions and global industry mentor networks.
+        </p>
+<div class="mt-3 pt-3 flex items-center justify-between text-ink-muted bg-surface-container/40 -mx-4 -mb-4 px-4 py-2.5 rounded-b-xl">
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-cypress-light">groups</span>
+<span class="font-body-sm text-body-sm font-medium">950 members</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-terracotta-deep">schedule</span>
+<span class="font-body-sm text-body-sm">Monthly Sat</span>
+</div>
+</div>
+<button class="px-3 py-1 rounded bg-surface-container text-ink-charcoal font-label-sm text-label-sm font-semibold hover:bg-surface-container-high" type="button">
+            Details
+          </button>
+</div>
+</div>
+<!-- Community Card 4: AI & Robotics Club -->
+<div class="rounded-xl bg-surface-container-low p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest overflow-hidden shadow-sm shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Modern collegiate artificial intelligence and embedded robotics guild badge, tactile linocut stamp aesthetic on warm parchment stone background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkD27VfjbBgjbjQu2pFtQGlivEOKgeeCTeZc4gw0KLlMZ0oY1kGYMIvpZd5W2lmUYD4ohNCTr0XuKYLUc-Pj4DWCy3P4liu728tKSe1CVjbKcIlTW5V0PnhBb37nwGdMMFhu53fL8HiBlwBoDa3QnT1_FupSCl_XCJNfgQ8RTsEtuJbViBDMT6f0TS6G_WXJwdAv8QNSTeH9_hIzEApjEm0VRFpvMA-Frg3wiUdtTZ"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<h3 class="font-title-md text-title-md text-ink-charcoal leading-tight">AI &amp; Robotics Research</h3>
+<span class="material-symbols-outlined text-verified-green text-[18px]">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-ink-muted">Hardware &amp; ML • Dept of Computer Science</span>
+</div>
+</div>
+<span class="shrink-0 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold uppercase tracking-wider">
+            Recruiting
+          </span>
+</div>
+<p class="mt-2.5 font-body-md text-body-md text-ink-muted line-clamp-2">
+          Autonomous vehicle prototypes, neural network study circles, and national hardware hackathon competitions.
+        </p>
+<div class="mt-3 pt-3 flex items-center justify-between text-ink-muted bg-surface-container/40 -mx-4 -mb-4 px-4 py-2.5 rounded-b-xl">
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-cypress-light">groups</span>
+<span class="font-body-sm text-body-sm font-medium">512 members</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-terracotta-deep">schedule</span>
+<span class="font-body-sm text-body-sm">Weekly Wed</span>
+</div>
+</div>
+<button class="px-3 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold active:opacity-90" type="button">
+            Join Chapter
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Upcoming Events Preview -->
+<section class="px-gutter pt-3 pb-4">
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-ink-charcoal">Campus Almanac: Events</h2>
+<p class="font-body-sm text-body-sm text-ink-muted">Open symposiums, workshops &amp; summits</p>
+</div>
+<a class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wide" href="#">Calendar</a>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Event 1: Tech Summit 2026 -->
+<div class="rounded-xl bg-surface-container-low p-3.5 shadow-sm flex flex-col gap-2.5">
+<div class="flex items-start gap-3">
+<!-- Date Badge -->
+<div class="w-12 h-14 rounded-lg bg-surface-container flex flex-col items-center justify-center shrink-0">
+<span class="font-label-sm text-label-sm uppercase font-bold text-terracotta-deep">MAY</span>
+<span class="font-headline-sm text-headline-sm text-ink-charcoal leading-none">14</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-tertiary-container/20 text-tertiary font-semibold uppercase">Flagship</span>
+<span class="font-body-sm text-body-sm text-ink-muted">09:00 AM WAT</span>
+</div>
+<h3 class="font-title-md text-title-md text-ink-charcoal truncate mt-0.5">ABU Annual Tech Summit 2026</h3>
+<p class="font-body-sm text-body-sm text-ink-muted flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-terracotta-deep">location_on</span>
+<span>Kashim Ibrahim Library Complex, Assembly Hall</span>
+</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1.5 text-cypress-light">
+<span class="material-symbols-outlined text-[16px]">how_to_reg</span>
+<span class="font-body-sm text-body-sm font-medium">Free Access • 480 Registered</span>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-ink-charcoal font-title-sm text-title-sm flex items-center gap-1 hover:bg-surface-container-high transition-colors" onclick="this.innerText = 'Added ✓'; this.classList.replace('bg-surface-container', 'bg-secondary-container');" type="button">
+<span class="material-symbols-outlined text-[16px]">calendar_add_on</span>
+<span>Add to Calendar</span>
+</button>
+</div>
+</div>
+<!-- Event 2: Design Sprint Workshop -->
+<div class="rounded-xl bg-surface-container-low p-3.5 shadow-sm flex flex-col gap-2.5">
+<div class="flex items-start gap-3">
+<div class="w-12 h-14 rounded-lg bg-surface-container flex flex-col items-center justify-center shrink-0">
+<span class="font-label-sm text-label-sm uppercase font-bold text-cypress-light">MAY</span>
+<span class="font-headline-sm text-headline-sm text-ink-charcoal leading-none">22</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-ink-muted font-semibold uppercase">Hands-on</span>
+<span class="font-body-sm text-body-sm text-ink-muted">02:30 PM WAT</span>
+</div>
+<h3 class="font-title-md text-title-md text-ink-charcoal truncate mt-0.5">Campus Design Sprint &amp; Prototyping</h3>
+<p class="font-body-sm text-body-sm text-ink-muted flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-terracotta-deep">location_on</span>
+<span>Architecture Studio 3, Congo Campus</span>
+</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1.5 text-cypress-light">
+<span class="material-symbols-outlined text-[16px]">groups</span>
+<span class="font-body-sm text-body-sm font-medium">35 Spots Left</span>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-ink-charcoal font-title-sm text-title-sm flex items-center gap-1 hover:bg-surface-container-high transition-colors" onclick="this.innerText = 'Added ✓'; this.classList.replace('bg-surface-container', 'bg-secondary-container');" type="button">
+<span class="material-symbols-outlined text-[16px]">calendar_add_on</span>
+<span>Add to Calendar</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Latest Opportunities Banner -->
+<section class="px-gutter pt-2 pb-4">
+<div class="rounded-xl bg-surface-container-high p-4 shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-sm text-label-sm uppercase font-bold text-terracotta-deep tracking-wider">Opportunity Dispatch</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">
+          3 days left
+        </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-ink-charcoal">
+        Northern Universities Green Agritech Hackathon
+      </h3>
+<p class="mt-1 font-body-md text-body-md text-ink-muted">
+        Build regenerative irrigation &amp; solar food-storage systems. ₦2,500,000 project grant + incubation cohort at National Agricultural Extension.
+      </p>
+<div class="mt-3.5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary">workspace_premium</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal">₦2,500,000 Prize Pool</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-lg bg-primary text-on-primary font-title-sm text-title-sm shadow-sm active:bg-terracotta-deep" type="button">
+          Apply Now
+        </button>
+</div>
+</div>
+</section>
+<!-- Student Organizations Call-to-Action Banner -->
+<section class="px-gutter pt-2 pb-6" id="org-banner">
+<div class="rounded-xl bg-secondary-container/40 p-5 shadow-sm text-center flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-cypress-light mb-1">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-ink-charcoal">
+        Lead a club or student initiative?
+      </h3>
+<p class="font-body-md text-body-md text-ink-muted max-w-sm">
+        List your chapter, announce recruitment, and publish verified events to the entire student body in under 2 minutes.
+      </p>
+<button class="mt-2 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-cypress-light text-on-secondary font-title-sm text-title-sm shadow-sm hover:opacity-90 transition-all" onclick="this.innerHTML = '&lt;span class=\'material-symbols-outlined text-[18px]\'&gt;check&lt;/span&gt; Initiating Registry...'; setTimeout(() =&gt; alert('Listing Portal opened. Enter community coordinator credentials.'), 400);" type="button">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+<span>Submit for Review</span>
+</button>
+</div>
+</section>
+<!-- Editorial Colophon / Quick Navigation -->
+<footer class="px-gutter pt-4 pb-8 bg-surface-container-low text-ink-muted flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">local_library</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal font-semibold">Campusly Almanac</span>
+</div>
+<span class="font-label-sm text-label-sm text-ink-muted">ABU Registry Edition • v2.4</span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-muted leading-relaxed">
+      Curated academic commons bridging associations, research groups, and collegiate student movements across Ahmadu Bello University campuses.
+    </p>
+<!-- Quick Footer Links -->
+<div class="grid grid-cols-2 gap-2 text-ink-charcoal pt-1">
+<a class="font-body-sm text-body-sm hover:text-primary transition-colors flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-[14px] text-cypress-light">arrow_right</span>
+<span>About the Almanac</span>
+</a>
+<a class="font-body-sm text-body-sm hover:text-primary transition-colors flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-[14px] text-cypress-light">arrow_right</span>
+<span>Submit an Entry</span>
+</a>
+<a class="font-body-sm text-body-sm hover:text-primary transition-colors flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-[14px] text-cypress-light">arrow_right</span>
+<span>Collegiate Directory</span>
+</a>
+<a class="font-body-sm text-body-sm hover:text-primary transition-colors flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-[14px] text-cypress-light">arrow_right</span>
+<span>Report a Listing</span>
+</a>
+</div>
+<div class="pt-3 flex items-center justify-between text-ink-muted font-label-sm text-label-sm">
+<span>© 2026 Campusly. Verified Academic Directory.</span>
+<div class="flex items-center gap-2">
+<span>Samaru</span>
+<span>•</span>
+<span>Congo</span>
+</div>
+</div>
+</footer>
+</div>
+<script>
+  // Intention Chip Interactive Filtering Micro-interaction
+  document.querySelectorAll('.intention-chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+      document.querySelectorAll('.intention-chip').forEach(c => {
+        c.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        c.classList.add('bg-surface-container', 'text-ink-muted');
+      });
+      this.classList.remove('bg-surface-container', 'text-ink-muted');
+      this.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+
+      const tag = this.getAttribute('data-tag');
+      const input = document.getElementById('main-search-input');
+      if (tag === 'all') {
+        input.value = '';
+      } else {
+        input.value = tag;
+      }
+    });
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(31,28,24,0.06)]" data-active-classes="text-primary"><div class="flex justify-around items-center h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[64px] min-h-[44px] py-1 transition-colors text-primary" data-path="explore-and-discover" href="#"><span class="material-symbols-outlined text-[24px]">explore</span><span class="font-label-sm text-label-sm font-medium tracking-normal">Explore</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[64px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="campus-directory" href="#"><span class="material-symbols-outlined text-[24px]">groups</span><span class="font-label-sm text-label-sm font-medium tracking-normal">Directory</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[64px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="events-and-opportunities" href="#"><span class="material-symbols-outlined text-[24px]">event_available</span><span class="font-label-sm text-label-sm font-medium tracking-normal">Events</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[64px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="student-spotlight" href="#"><span class="material-symbols-outlined text-[24px]">storefront</span><span class="font-label-sm text-label-sm font-medium tracking-normal">Spotlight</span></a></div></nav></body></html>

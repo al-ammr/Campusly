@@ -1,0 +1,32 @@
+@import './tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  html[data-theme='dark'] {
+    color-scheme: dark;
+  }
+  body {
+    color: var(--color-text);
+    background-color: var(--color-surface);
+    font-family: var(--font-family-body);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Mandatory accessible focus ring (UI-301) */
+  :focus-visible {
+    outline: 3px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* Tabular numbers for dates, prices, counters (TYP-06) */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}

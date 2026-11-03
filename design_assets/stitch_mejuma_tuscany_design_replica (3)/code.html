@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "inverse-primary": "#ffb59c", "inverse-surface": "#31302d", "outline-variant": "#dec0b7", "secondary-fixed": "#d1e9cf", "surface": "#fcf9f4", "on-secondary-fixed-variant": "#374c39", "on-primary-container": "#fffbff", "inverse-on-surface": "#f3f0eb", "background": "#fcf9f4", "secondary-container": "#d1e9cf", "terracotta-deep": "#A8431F", "on-error": "#ffffff", "verified-green": "#2B6E3F", "on-tertiary-fixed": "#261a00", "tertiary-container": "#956e00", "surface-container-high": "#ebe8e3", "surface-container-low": "#f6f3ee", "surface-tint": "#a23e18", "surface-variant": "#e5e2dd", "tertiary-fixed-dim": "#f3bf46", "surface-container-lowest": "#ffffff", "tertiary": "#765700", "on-surface": "#1c1c19", "surface-dim": "#dcdad5", "error-container": "#ffdad6", "ink-charcoal": "#1F1C18", "cypress-light": "#4A634E", "ink-muted": "#4A453E", "on-primary": "#ffffff", "on-primary-fixed-variant": "#822801", "on-tertiary-fixed-variant": "#5c4300", "stone-surface": "#F3EFEA", "primary": "#9f3c16", "on-tertiary-container": "#fffbff", "primary-fixed-dim": "#ffb59c", "secondary-fixed-dim": "#b5cdb4", "surface-bright": "#fcf9f4", "secondary": "#4e6450", "outline": "#8a726a", "on-surface-variant": "#57423b", "on-secondary": "#ffffff", "primary-container": "#bf542c", "on-tertiary": "#ffffff", "on-secondary-fixed": "#0c2010", "on-error-container": "#93000a", "error": "#ba1a1a", "primary-fixed": "#ffdbcf", "surface-container-highest": "#e5e2dd", "on-secondary-container": "#546a55", "tertiary-fixed": "#ffdf9f", "surface-container": "#f0ede9", "stone-border": "#E3DCD2", "on-background": "#1c1c19", "on-primary-fixed": "#390c00" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin-tablet": "2rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "margin-desktop": "3rem", "gutter-desktop": "1.5rem", "gutter": "1rem", "space-xs": "0.25rem", "space-xl": "2.5rem", "margin": "1rem" }, fontFamily: { "title-md": ["Plus Jakarta Sans"], "headline-md": ["Playfair Display"], "title-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Playfair Display"], "title-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "display-lg": ["Playfair Display"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Playfair Display"], "headline-sm": ["Playfair Display"], "label-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-lg": ["Playfair Display"] }, fontSize: { "title-md": ["16px", { lineHeight: "22px", fontWeight: "600" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }], "title-sm": ["14px", { lineHeight: "20px", fontWeight: "600" }], "display-lg-mobile": ["34px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }], "title-lg": ["18px", { lineHeight: "24px", fontWeight: "700" }], "body-sm": ["12px", { lineHeight: "18px", fontWeight: "400" }], "label-md": ["13px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "22px", fontWeight: "400" }], "headline-lg-mobile": ["26px", { lineHeight: "32px", fontWeight: "600" }], "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "700" }], "body-lg": ["16px", { lineHeight: "26px", fontWeight: "400" }], "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }] } } } };</script><style>@layer base { html, body { width: 100%; margin: 0; padding: 0; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md text-body-md min-h-full flex flex-col antialiased selection:bg-primary/20 selection:text-primary"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(31,28,24,0.04)] pt-safe"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="Campusly Logo" class="h-8 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1iBNhEaxT82EJ5m-CawVsdX6W3Tn-a38O0pERE0Fy2qgzJY_3TqSo1tqdA8BUfcOySB650fryYkpnkaY5r12L8RjDigT2MPXf00mlRcL6cqvRcDlmMC-LhpLv1Ko7EJb79quXjZWRzUaLjrf-gd2EvF0pOIfGBY0sXi33qKCUYji16ZvVecXBPOijY4HMP8nEUHyIPztIbIpZbv28xx_MKo1VooczF3dXYSCte-iS"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-ink-charcoal tracking-tight truncate">Campusly</span><span class="font-body-sm text-body-sm text-outline-variant font-medium">•</span><span class="font-title-sm text-title-sm text-ink-muted truncate">Student Spotlight</span></div><button class="flex items-center gap-1 text-secondary hover:text-cypress-light text-left transition-colors min-h-[20px]" type="button"><span class="material-symbols-outlined text-[14px] text-terracotta-deep">location_on</span><span class="font-label-sm text-label-sm font-semibold tracking-wide uppercase text-cypress-light">ABU Zaria</span><span class="material-symbols-outlined text-[14px] text-outline">keyboard_arrow_down</span></button></div></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="Search" class="w-11 h-11 flex items-center justify-center rounded-full text-ink-muted hover:text-primary hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">search</span></button><button aria-label="Share Campusly" class="w-11 h-11 flex items-center justify-center rounded-full text-ink-muted hover:text-primary hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">share</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-[0_1px_4px_rgba(159,60,22,0.25)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 w-full bg-surface pt-16 pb-24 flex flex-col"><div class="flex flex-col w-full">
+<!-- Editorial Header & Arch Motif -->
+<section class="px-gutter pt-4 pb-3 flex flex-col gap-2 relative">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined text-[14px] text-verified-green" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold">ABU Commerce Registry</span>
+</div>
+<span class="font-body-sm text-body-sm text-ink-muted">Term 2 • 2024</span>
+</div>
+<div class="flex items-start justify-between gap-4 mt-1">
+<div class="flex-1">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-ink-charcoal tracking-tight font-headline-lg">
+          Student Spotlight
+        </h1>
+<p class="font-body-md text-body-md text-ink-muted mt-1 leading-relaxed">
+          Discover and support verified student enterprises and services at ABU Zaria.
+        </p>
+</div>
+<!-- Tuscan Collegiate Emblem Inspired by Campusly Crest -->
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center shrink-0 shadow-sm">
+<svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 36 36">
+<path d="M18 7v10M12 11c0-3.3 2.7-6 6-6s6 2.7 6 6v6H12V11z" stroke-linecap="round"></path>
+<path d="M7 26c3-1.5 7-1.5 11 1 4-2.5 8-2.5 11-1M7 22c3-1.5 7-1.5 11 1 4-2.5 8-2.5 11-1" stroke-linecap="round"></path>
+<path d="M18 27V17" stroke-linecap="round"></path>
+</svg>
+</div>
+</div>
+<!-- Monetization CTA Banner -->
+<div class="mt-3 p-3.5 rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-2.5">
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">storefront</span>
+<span class="font-title-sm text-title-sm text-ink-charcoal">Showcase Your Enterprise</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-semibold">
+          Verified Directory
+        </span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-muted">
+        Reach 12,000+ peers across Samaru &amp; Kongo campuses. Verified star ratings and WhatsApp integration.
+      </p>
+<div class="flex items-center gap-2 pt-1">
+<button class="flex-1 py-2 px-3 rounded-lg bg-primary hover:bg-terracotta-deep text-on-primary font-title-sm text-title-sm shadow-sm transition-all active:scale-[0.98] flex items-center justify-center gap-1.5" id="openListModalBtn">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+<span>List Business</span>
+<span class="font-body-sm text-body-sm opacity-90 font-normal ml-0.5">• from ₦1,000</span>
+</button>
+<button class="px-2.5 py-2 rounded-lg bg-surface-container text-ink-charcoal hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center justify-center" id="openPolicyBtn">
+<span class="material-symbols-outlined text-[18px]">help_outline</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Pinned Featured Showcase Section -->
+<section class="mt-4 flex flex-col gap-2.5">
+<div class="px-gutter flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-[18px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+<h2 class="font-title-md text-title-md text-ink-charcoal uppercase tracking-wider font-semibold">
+          Featured Ventures
+        </h2>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Curated Weekly</span>
+</div>
+<!-- Horizontal Swipe Strip -->
+<div class="overflow-x-auto no-scrollbar px-gutter flex gap-3.5 pb-2 pt-1">
+<!-- Featured 1: Zaria Gourmet Bites -->
+<article class="min-w-[270px] max-w-[280px] bg-stone-surface rounded-xl p-3.5 shadow-sm flex flex-col justify-between shrink-0 relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-tertiary to-primary-container"></div>
+<div>
+<div class="flex items-start justify-between gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-verified-green" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              Gourmet Food
+            </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-bold">
+              FEATURED
+            </span>
+</div>
+<div class="mt-2.5 rounded-lg overflow-hidden h-28 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Artisanal baked pastries and gourmet savory hand pies displayed rustic style on handwoven raffia trays with warm sunlight in a campus studio setting, Tuscan warmth, warm earth tones and rich terracotta textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZXQhyMgMd-EBpGOLPINxSQhcP09z5VfZGHE72FjHqvS98e8vjG4UauA-FhLDQrcjPHALhM7YJiSnpxxnPqgqpg9-Y7jhRR0d9DwmnMAFpbbDjpB_Ioaq0q-W_Bhw5PXUMB7sTfWwvtWOJ3RELEAdppdNxQZ1Lnnl1b5sZzKXZzLJbt6QX-GxISj0CKJ5edSTiR4IX0wES80WmfTvWHlVa9ax3gG-lA3NKlmcRI9PZ"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-ink-charcoal mt-2.5 font-headline-md">
+            Zaria Gourmet Bites
+          </h3>
+<p class="font-body-sm text-body-sm text-ink-muted mt-0.5 line-clamp-2">
+            Student artisanal meat pies, cinnamon buns &amp; chilled hibiscus zest drinks for late library sessions.
+          </p>
+<div class="mt-2.5 flex items-center gap-2 text-ink-muted">
+<span class="material-symbols-outlined text-[15px] text-terracotta-deep">location_on</span>
+<span class="font-body-sm text-body-sm">Admin Quad &amp; Senate Delivery</span>
+</div>
+<div class="mt-1 flex items-center gap-2 text-ink-muted">
+<span class="material-symbols-outlined text-[15px] text-secondary">payments</span>
+<span class="font-body-sm text-body-sm font-semibold text-ink-charcoal">₦500 - ₦2,500</span>
+</div>
+</div>
+<div class="mt-3.5 pt-2.5 border-t border-surface-container flex items-center justify-between gap-2">
+<button class="vote-star-btn flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-surface-container text-ink-charcoal hover:bg-secondary-container transition-all active:scale-95" data-business="gourmet" data-stars="142">
+<span class="material-symbols-outlined text-tertiary text-[17px] star-icon" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-title-sm text-title-sm font-semibold star-count">142</span>
+</button>
+<a class="flex-1 py-1.5 px-3 rounded-lg bg-secondary text-on-secondary font-title-sm text-title-sm flex items-center justify-center gap-1 hover:bg-cypress-light transition-colors" href="https://wa.me/2348000000001?text=Hello%20Zaria%20Gourmet%20Bites%20via%20Campusly" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+<span>Order</span>
+</a>
+</div>
+</article>
+<!-- Featured 2: Kashim Print & Design Hub -->
+<article class="min-w-[270px] max-w-[280px] bg-stone-surface rounded-xl p-3.5 shadow-sm flex flex-col justify-between shrink-0 relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-secondary via-primary to-secondary-container"></div>
+<div>
+<div class="flex items-start justify-between gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-verified-green" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              Print &amp; Design
+            </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-bold">
+              FEATURED
+            </span>
+</div>
+<div class="mt-2.5 rounded-lg overflow-hidden h-28 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="University architectural design studio desk with neatly rolled blueprints, thesis leather bindings, typography prints, architectural scale ruler, and laptop display in warm natural morning studio light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSx4mrYKB8HhuCXRWcmqNmy1qfpFwQgF248JVofKpOfGyDO_0gPNI7FVh2rOSwzDWYmgViTmyZ5alBCFFEejftP2JLp8FlsLDiT4nJ1sAyl8Tl4E7DvHdeAYY4Dg7G66bmBuEZ7qsqe4G57Qz9QDkKCAe9gq56K7CMgDp3Rd4q_rocWRB9kkS6RmyngHwpTJ7w-C8ervXexDxL6BQ8vzmOeUV5FDLcBQoP08X4Gof5"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-ink-charcoal mt-2.5 font-headline-md">
+            Kashim Print Hub
+          </h3>
+<p class="font-body-sm text-body-sm text-ink-muted mt-0.5 line-clamp-2">
+            Laser CAD blueprints, thesis hard-cover binding, and urgent presentation posters for studio reviews.
+          </p>
+<div class="mt-2.5 flex items-center gap-2 text-ink-muted">
+<span class="material-symbols-outlined text-[15px] text-terracotta-deep">school</span>
+<span class="font-body-sm text-body-sm">Architecture Dept • Kashim Ibrahim Library</span>
+</div>
+<div class="mt-1 flex items-center gap-2 text-ink-muted">
+<span class="material-symbols-outlined text-[15px] text-secondary">payments</span>
+<span class="font-body-sm text-body-sm font-semibold text-ink-charcoal">₦100 - ₦6,000</span>
+</div>
+</div>
+<div class="mt-3.5 pt-2.5 border-t border-surface-container flex items-center justify-between gap-2">
+<button class="vote-star-btn flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-surface-container text-ink-charcoal hover:bg-secondary-container transition-all active:scale-95" data-business="kashim" data-stars="118">
+<span class="material-symbols-outlined text-tertiary text-[17px] star-icon" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-title-sm text-title-sm font-semibold star-count">118</span>
+</button>
+<a class="flex-1 py-1.5 px-3 rounded-lg bg-secondary text-on-secondary font-title-sm text-title-sm flex items-center justify-center gap-1 hover:bg-cypress-light transition-colors" href="https://wa.me/2348000000002?text=Hello%20Kashim%20Print%20Hub%20via%20Campusly" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+<span>WhatsApp</span>
+</a>
+</div>
+</article>
+</div>
+</section>
+<!-- Community Ranking Section -->
+<section class="px-gutter mt-5 flex flex-col gap-3">
+<div class="flex items-end justify-between border-b border-surface-container pb-2">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">leaderboard</span>
+<h2 class="font-headline-sm text-headline-sm text-ink-charcoal font-headline-md">
+            Community Rankings
+          </h2>
+</div>
+<p class="font-body-sm text-body-sm text-ink-muted mt-0.5">
+          Ranked strictly by verified student stars • 1 vote per device
+        </p>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-ink-muted shrink-0 font-medium">
+        Top 5 Today
+      </span>
+</div>
+<!-- Ranked Cards (#1 to #5) -->
+<div class="flex flex-col gap-3">
+<!-- Rank #1: SwiftCampus Laundry Service -->
+<article class="p-3.5 rounded-xl bg-stone-surface shadow-sm flex flex-col gap-3 relative transition-all duration-200">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3 min-w-0">
+<!-- Rank Badge #1 -->
+<div class="w-8 h-8 rounded-lg bg-tertiary text-on-tertiary flex items-center justify-center font-title-md text-title-md font-bold shadow-sm shrink-0">
+              #1
+            </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-title-lg text-title-lg text-ink-charcoal tracking-tight font-title-md">
+                  SwiftCampus Laundry Service
+                </h3>
+<span class="material-symbols-outlined text-[16px] text-verified-green" style="font-variation-settings: 'FILL' 1;" title="Verified ABU Student Venture">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-muted mt-0.5">
+                Managed by Usman Bello (Faculty of Engineering)
+              </p>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-1 bg-surface-container px-2 py-1 rounded-md">
+<span class="material-symbols-outlined text-verified-green text-[14px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-label-sm text-label-sm text-verified-green font-bold">24H TURNAROUND</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-ink-charcoal">
+          Fast 24hr campus pick-up &amp; steam iron delivery across Main Campus (Izza, Ribadu, Suleiman) and Kongo Campus hostels.
+        </p>
+<div class="flex flex-wrap items-center gap-2 pt-1 text-ink-muted">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">₦700 / wash bag</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Hostel Door Delivery</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-verified-green"></span> Available Now
+          </span>
+</div>
+<div class="flex items-center justify-between gap-2 pt-2 border-t border-surface-container">
+<button class="vote-star-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-secondary-container text-ink-charcoal transition-all active:scale-95" data-business="swift-laundry" data-stars="189">
+<span class="material-symbols-outlined text-tertiary text-[18px] star-icon" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-title-sm text-title-sm font-semibold star-count">189</span>
+<span class="font-body-sm text-body-sm text-ink-muted text-xs">Stars</span>
+</button>
+<div class="flex items-center gap-1.5">
+<a aria-label="Call Usman" class="w-9 h-9 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-ink-charcoal transition-colors" href="tel:+2348001112233">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+<a class="px-3.5 py-1.5 rounded-lg bg-primary hover:bg-terracotta-deep text-on-primary font-title-sm text-title-sm flex items-center gap-1 shadow-sm transition-all active:scale-95" href="https://wa.me/2348001112233?text=Hi%20SwiftCampus,%20I%20need%20laundry%20pickup">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+<span>Order Pickup</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Rank #2: PixelCraft Tech Repairs -->
+<article class="p-3.5 rounded-xl bg-stone-surface shadow-sm flex flex-col gap-3 relative transition-all duration-200">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-secondary text-on-secondary flex items-center justify-center font-title-md text-title-md font-bold shadow-sm shrink-0">
+              #2
+            </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-title-lg text-title-lg text-ink-charcoal tracking-tight font-title-md">
+                  PixelCraft Tech Repairs
+                </h3>
+<span class="material-symbols-outlined text-[16px] text-verified-green" style="font-variation-settings: 'FILL' 1;" title="Verified ABU Student Venture">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-muted mt-0.5">
+                Chinedu O. • Computer Science (Final Year)
+              </p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-ink-muted shrink-0 font-medium">Hardware</span>
+</div>
+<p class="font-body-md text-body-md text-ink-charcoal">
+          Laptop motherboard diagnostic, cracked screen replacement, battery renewal, SSD upgrade, and thermal repasting for project crunch time.
+        </p>
+<div class="flex flex-wrap items-center gap-2 pt-1 text-ink-muted">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Free Checkup</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">30-Day Warranty</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Iya Abubakar Lab</span>
+</div>
+<div class="flex items-center justify-between gap-2 pt-2 border-t border-surface-container">
+<button class="vote-star-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-secondary-container text-ink-charcoal transition-all active:scale-95" data-business="pixelcraft" data-stars="156">
+<span class="material-symbols-outlined text-tertiary text-[18px] star-icon" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-title-sm text-title-sm font-semibold star-count">156</span>
+<span class="font-body-sm text-body-sm text-ink-muted text-xs">Stars</span>
+</button>
+<a class="px-3.5 py-1.5 rounded-lg bg-secondary hover:bg-cypress-light text-on-secondary font-title-sm text-title-sm flex items-center gap-1 shadow-sm transition-all active:scale-95" href="https://wa.me/2348002223344?text=Hi%20PixelCraft,%20my%20laptop%20needs%20repair">
+<span class="material-symbols-outlined text-[16px]">build</span>
+<span>Book Repair</span>
+</a>
+</div>
+</article>
+<!-- Rank #3: ABU Vintage Thrift Store -->
+<article class="p-3.5 rounded-xl bg-stone-surface shadow-sm flex flex-col gap-3 relative transition-all duration-200">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-ink-charcoal flex items-center justify-center font-title-md text-title-md font-bold shrink-0">
+              #3
+            </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-title-lg text-title-lg text-ink-charcoal tracking-tight font-title-md">
+                  ABU Vintage Thrift Store
+                </h3>
+<span class="material-symbols-outlined text-[16px] text-verified-green" style="font-variation-settings: 'FILL' 1;" title="Verified ABU Student Venture">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-muted mt-0.5">
+                Aisha S. • Mass Communication
+              </p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-ink-muted shrink-0 font-medium">Wardrobe</span>
+</div>
+<p class="font-body-md text-body-md text-ink-charcoal">
+          Affordable curated vintage denim, oversized college hoodies, cargo pants, and footwear hand-picked for university students.
+        </p>
+<div class="flex flex-wrap items-center gap-2 pt-1 text-ink-muted">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">₦1,500 - ₦5,000</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Weekly Drops (Fridays)</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Hostel Try-ons</span>
+</div>
+<div class="flex items-center justify-between gap-2 pt-2 border-t border-surface-container">
+<button class="vote-star-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-secondary-container text-ink-charcoal transition-all active:scale-95" data-business="abu-thrift" data-stars="134">
+<span class="material-symbols-outlined text-tertiary text-[18px] star-icon" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-title-sm text-title-sm font-semibold star-count">134</span>
+<span class="font-body-sm text-body-sm text-ink-muted text-xs">Stars</span>
+</button>
+<a class="px-3.5 py-1.5 rounded-lg bg-primary hover:bg-terracotta-deep text-on-primary font-title-sm text-title-sm flex items-center gap-1 shadow-sm transition-all active:scale-95" href="https://wa.me/2348003334455?text=Hi%20ABU%20Vintage%20Thrift,%20can%20I%20see%20latest%20drop">
+<span class="material-symbols-outlined text-[16px]">checkroom</span>
+<span>View Catalog</span>
+</a>
+</div>
+</article>
+<!-- Rank #4: Samaru Meal Prep -->
+<article class="p-3.5 rounded-xl bg-stone-surface shadow-sm flex flex-col gap-3 relative transition-all duration-200">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-ink-charcoal flex items-center justify-center font-title-md text-title-md font-bold shrink-0">
+              #4
+            </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-title-lg text-title-lg text-ink-charcoal tracking-tight font-title-md">
+                  Samaru Meal Prep
+                </h3>
+<span class="material-symbols-outlined text-[16px] text-verified-green" style="font-variation-settings: 'FILL' 1;" title="Verified ABU Student Venture">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-muted mt-0.5">
+                Khadija &amp; Team • Human Nutrition
+              </p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-ink-muted shrink-0 font-medium">Nutrition</span>
+</div>
+<p class="font-body-md text-body-md text-ink-charcoal">
+          Nutritious balanced student bowls (rice, roasted veggies, grilled beef/fish, plantain) prepared fresh and delivered warm straight to hostel gates.
+        </p>
+<div class="flex flex-wrap items-center gap-2 pt-1 text-ink-muted">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">₦1,200 / portion</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Lunch &amp; Dinner Slots</span>
+</div>
+<div class="flex items-center justify-between gap-2 pt-2 border-t border-surface-container">
+<button class="vote-star-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-secondary-container text-ink-charcoal transition-all active:scale-95" data-business="samaru-meal" data-stars="98">
+<span class="material-symbols-outlined text-tertiary text-[18px] star-icon" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-title-sm text-title-sm font-semibold star-count">98</span>
+<span class="font-body-sm text-body-sm text-ink-muted text-xs">Stars</span>
+</button>
+<a class="px-3.5 py-1.5 rounded-lg bg-secondary hover:bg-cypress-light text-on-secondary font-title-sm text-title-sm flex items-center gap-1 shadow-sm transition-all active:scale-95" href="https://wa.me/2348004445566?text=Hi%20Samaru%20Meal%20Prep,%20todays%20menu%20please">
+<span class="material-symbols-outlined text-[16px]">restaurant</span>
+<span>Daily Menu</span>
+</a>
+</div>
+</article>
+<!-- Rank #5: Quad Lens Photography -->
+<article class="p-3.5 rounded-xl bg-stone-surface shadow-sm flex flex-col gap-3 relative transition-all duration-200">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-ink-charcoal flex items-center justify-center font-title-md text-title-md font-bold shrink-0">
+              #5
+            </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-title-lg text-title-lg text-ink-charcoal tracking-tight font-title-md">
+                  Quad Lens Photography
+                </h3>
+<span class="material-symbols-outlined text-[16px] text-verified-green" style="font-variation-settings: 'FILL' 1;" title="Verified ABU Student Venture">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-muted mt-0.5">
+                Terna David • Fine Arts
+              </p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-ink-muted shrink-0 font-medium">Creative</span>
+</div>
+<p class="font-body-md text-body-md text-ink-charcoal">
+          Convocation portraits, student association headshots, hostel birthday shoots, and vintage film color grading.
+        </p>
+<div class="flex flex-wrap items-center gap-2 pt-1 text-ink-muted">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">₦3,000 / 5 edited shots</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Same-Day RAW Previews</span>
+</div>
+<div class="flex items-center justify-between gap-2 pt-2 border-t border-surface-container">
+<button class="vote-star-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-secondary-container text-ink-charcoal transition-all active:scale-95" data-business="quad-lens" data-stars="87">
+<span class="material-symbols-outlined text-tertiary text-[18px] star-icon" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-title-sm text-title-sm font-semibold star-count">87</span>
+<span class="font-body-sm text-body-sm text-ink-muted text-xs">Stars</span>
+</button>
+<a class="px-3.5 py-1.5 rounded-lg bg-secondary hover:bg-cypress-light text-on-secondary font-title-sm text-title-sm flex items-center gap-1 shadow-sm transition-all active:scale-95" href="https://wa.me/2348005556677?text=Hi%20Quad%20Lens,%20photo%20session%20enquiry">
+<span class="material-symbols-outlined text-[16px]">photo_camera</span>
+<span>Book Shoot</span>
+</a>
+</div>
+</article>
+</div>
+</section>
+<!-- Spotlight Process & Guidelines Parchment Card -->
+<section class="px-gutter mt-5 mb-3">
+<div class="p-4 rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-terracotta-deep text-[20px]">verified_user</span>
+<h3 class="font-headline-sm text-headline-sm text-ink-charcoal font-headline-md">
+          How to List on Spotlight
+        </h3>
+</div>
+<p class="font-body-sm text-body-sm text-ink-muted leading-relaxed">
+        Campusly supports legitimate student commerce with verified student status to prevent scams and foster peer trust.
+      </p>
+<div class="grid grid-cols-1 gap-2.5 pt-1">
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-sm text-label-sm font-bold shrink-0">1</div>
+<div class="min-w-0">
+<span class="font-title-sm text-title-sm text-ink-charcoal block">Submit Venture Profile</span>
+<span class="font-body-sm text-body-sm text-ink-muted">Enter your business name, services, WhatsApp contact, and campus delivery area.</span>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-sm text-label-sm font-bold shrink-0">2</div>
+<div class="min-w-0">
+<span class="font-title-sm text-title-sm text-ink-charcoal block">Choose Tier &amp; Transfer</span>
+<span class="font-body-sm text-body-sm text-ink-muted"><strong>₦1,000 Standard</strong> (Permanent listing) or <strong>₦5,000 Featured</strong> (Pinned top slot for 14 days).</span>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-sm text-label-sm font-bold shrink-0">3</div>
+<div class="min-w-0">
+<span class="font-title-sm text-title-sm text-ink-charcoal block">Upload Proof &amp; Live within 2h</span>
+<span class="font-body-sm text-body-sm text-ink-muted">Upload bank receipt with your student ID reference. Campus Admin validates badge within 2 hours.</span>
+</div>
+</div>
+</div>
+<div class="mt-2 pt-2 border-t border-surface-container flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-ink-muted font-medium">Need immediate onboarding help?</span>
+<a class="font-title-sm text-title-sm text-primary hover:underline" href="https://wa.me/2348099998888?text=Campusly%20Spotlight%20Help">
+          Talk to Student Desk
+        </a>
+</div>
+</div>
+</section>
+<!-- Modal Bottom Tray: List Business Form (Hidden by default, triggered via script) -->
+<div class="fixed inset-0 z-50 bg-ink-charcoal/50 backdrop-blur-sm hidden flex flex-col justify-end" id="listModal">
+<div class="w-full bg-surface rounded-t-2xl p-4 max-h-[751px] overflow-y-auto shadow-2xl flex flex-col gap-3 pb-8">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">add_business</span>
+<h2 class="font-headline-sm text-headline-sm text-ink-charcoal font-headline-md">List Your Business</h2>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-ink-charcoal hover:bg-surface-container-high" id="closeListModalBtn">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-ink-muted">
+        Fill out your venture details. Once verified, you'll start collecting student star ratings.
+      </p>
+<form class="flex flex-col gap-3 mt-1" id="spotlightForm" onsubmit="event.preventDefault(); window.submitSpotlight();">
+<div>
+<label class="font-label-sm text-label-sm text-ink-charcoal font-semibold block mb-1">Business Name</label>
+<input class="w-full px-3 py-2 rounded-lg bg-surface-container-low text-ink-charcoal placeholder:text-outline text-body-md font-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="e.g., Zaria Custom Prints" required="" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div>
+<label class="font-label-sm text-label-sm text-ink-charcoal font-semibold block mb-1">Student Reg / ID</label>
+<input class="w-full px-3 py-2 rounded-lg bg-surface-container-low text-ink-charcoal placeholder:text-outline text-body-md font-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="U19/ENG/..." required="" type="text"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-ink-charcoal font-semibold block mb-1">Faculty</label>
+<input class="w-full px-3 py-2 rounded-lg bg-surface-container-low text-ink-charcoal placeholder:text-outline text-body-md font-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Administration" required="" type="text"/>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-ink-charcoal font-semibold block mb-1">WhatsApp Order Number</label>
+<input class="w-full px-3 py-2 rounded-lg bg-surface-container-low text-ink-charcoal placeholder:text-outline text-body-md font-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="+234 800 000 0000" required="" type="tel"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-ink-charcoal font-semibold block mb-1">Brief Description</label>
+<textarea class="w-full px-3 py-2 rounded-lg bg-surface-container-low text-ink-charcoal placeholder:text-outline text-body-md font-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="What do you offer students on campus?" required="" rows="2"></textarea>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-ink-charcoal font-semibold block mb-1.5">Select Spotlight Tier</label>
+<div class="grid grid-cols-2 gap-2">
+<label class="p-2.5 rounded-lg bg-surface-container cursor-pointer flex flex-col gap-1 has-[:checked]:bg-primary-fixed">
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-ink-charcoal">Standard</span>
+<input checked="" class="accent-primary" name="tier" type="radio" value="1000"/>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">₦1,000</span>
+<span class="font-body-sm text-body-sm text-ink-muted text-xs">Permanent listing</span>
+</label>
+<label class="p-2.5 rounded-lg bg-surface-container cursor-pointer flex flex-col gap-1 has-[:checked]:bg-primary-fixed">
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-ink-charcoal">Featured</span>
+<input class="accent-primary" name="tier" type="radio" value="5000"/>
+</div>
+<span class="font-headline-sm text-headline-sm text-terracotta-deep font-bold">₦5,000</span>
+<span class="font-body-sm text-body-sm text-ink-muted text-xs">Top carousel 14 days</span>
+</label>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container text-ink-charcoal flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-semibold text-ink-muted">Transfer Account (Sterling Bank)</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">CAMPUSLY ABU</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-title-sm font-bold tracking-wider">0084920481</span>
+<button class="text-xs px-2 py-0.5 rounded bg-surface text-ink-charcoal hover:bg-surface-container-high font-semibold" onclick="navigator.clipboard.writeText('0084920481'); alert('Account copied to clipboard!');" type="button">
+              Copy
+            </button>
+</div>
+</div>
+<button class="w-full mt-1 py-2.5 px-4 rounded-lg bg-primary hover:bg-terracotta-deep text-on-primary font-title-md text-title-md font-semibold shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+<span>Proceed &amp; Upload Receipt</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+<!-- Micro-interaction Toast Notification -->
+<div class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-ink-charcoal text-surface px-4 py-2 rounded-full font-label-md text-label-md shadow-lg transition-all opacity-0 pointer-events-none flex items-center gap-1.5" id="voteToast">
+<span class="material-symbols-outlined text-tertiary-fixed text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span id="toastMsg">Star added! Thank you for supporting peer business.</span>
+</div>
+</div>
+<script>
+  (function initSpotlightInteractions() {
+    const listModal = document.getElementById('listModal');
+    const openBtn = document.getElementById('openListModalBtn');
+    const closeBtn = document.getElementById('closeListModalBtn');
+    const openPolicyBtn = document.getElementById('openPolicyBtn');
+    const toast = document.getElementById('voteToast');
+    const toastMsg = document.getElementById('toastMsg');
+
+    function showModal() {
+      listModal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      listModal.classList.add('hidden');
+    }
+
+    if (openBtn) openBtn.addEventListener('click', showModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (openPolicyBtn) {
+      openPolicyBtn.addEventListener('click', () => {
+        const rulesCard = document.querySelector('section:last-of-type');
+        if (rulesCard) {
+          rulesCard.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+
+    if (listModal) {
+      listModal.addEventListener('click', (e) => {
+        if (e.target === listModal) closeModal();
+      });
+    }
+
+    function showToast(text) {
+      if (!toast) return;
+      toastMsg.textContent = text;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2600);
+    }
+
+    // Interactive Star Voting with Device Memory Mock
+    const votedKeys = JSON.parse(localStorage.getItem('campusly_voted_businesses') || '{}');
+    const starButtons = document.querySelectorAll('.vote-star-btn');
+
+    starButtons.forEach(btn => {
+      const bizId = btn.getAttribute('data-business');
+      const starCountElem = btn.querySelector('.star-count');
+      const starIcon = btn.querySelector('.star-icon');
+
+      if (votedKeys[bizId]) {
+        btn.classList.add('bg-secondary-fixed', 'text-on-secondary-fixed-variant');
+        if (starIcon) starIcon.style.color = '#765700';
+      }
+
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let currentCount = parseInt(btn.getAttribute('data-stars'), 10);
+
+        if (votedKeys[bizId]) {
+          // Toggle off
+          currentCount -= 1;
+          delete votedKeys[bizId];
+          btn.setAttribute('data-stars', currentCount);
+          starCountElem.textContent = currentCount;
+          btn.classList.remove('bg-secondary-fixed', 'text-on-secondary-fixed-variant');
+          showToast('Vote retracted.');
+        } else {
+          // Toggle on
+          currentCount += 1;
+          votedKeys[bizId] = true;
+          btn.setAttribute('data-stars', currentCount);
+          starCountElem.textContent = currentCount;
+          btn.classList.add('bg-secondary-fixed', 'text-on-secondary-fixed-variant');
+          
+          // Little bounce delight
+          btn.style.transform = 'scale(1.1)';
+          setTimeout(() => { btn.style.transform = 'scale(1)'; }, 150);
+          showToast('⭐ Star added! Verified student vote recorded.');
+        }
+        localStorage.setItem('campusly_voted_businesses', JSON.stringify(votedKeys));
+      });
+    });
+
+    window.submitSpotlight = function() {
+      closeModal();
+      showToast('🎉 Application received! Please transfer reference to Sterling bank.');
+    };
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(31,28,24,0.06)]" data-active-classes="text-primary"><div class="flex justify-around items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center gap-0.5 min-w-[64px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="explore-and-discover" href="#"><span class="material-symbols-outlined text-[24px]">explore</span><span class="font-label-sm text-label-sm font-medium tracking-normal">Explore</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[64px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="campus-directory" href="#"><span class="material-symbols-outlined text-[24px]">groups</span><span class="font-label-sm text-label-sm font-medium tracking-normal">Directory</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[64px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="events-and-opportunities" href="#"><span class="material-symbols-outlined text-[24px]">event_available</span><span class="font-label-sm text-label-sm font-medium tracking-normal">Events</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[64px] min-h-[44px] py-1 transition-colors text-primary" data-path="student-spotlight" href="#"><span class="material-symbols-outlined text-[24px]">storefront</span><span class="font-label-sm text-label-sm font-medium tracking-normal">Spotlight</span></a></div></nav></body></html>
