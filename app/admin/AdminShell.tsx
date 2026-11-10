@@ -105,25 +105,28 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             )}
           </button>
 
-          <Link href="/admin/review" className="flex items-center gap-2.5">
-            <div
-              className="w-7 h-7 rounded-md overflow-hidden shrink-0 relative"
-              style={{ background: '#2D1810' }}
-            >
+          <Link href="/admin/review" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0 border border-[#D4A373]/40 bg-[#2D1810] shadow-xs">
               <Image
                 src="/inverted_logo.jpg"
                 alt="Campusly"
-                fill
-                className="object-cover"
-                sizes="28px"
+                width={32}
+                height={32}
+                className="w-full h-full object-cover"
+                priority
               />
             </div>
-            <span
-              className="font-semibold text-sm tracking-tight"
-              style={{ color: '#2D1810' }}
-            >
-              Campusly
-            </span>
+            <div className="flex flex-col">
+              <span
+                className="font-display font-bold text-sm tracking-tight leading-none group-hover:text-[#7C4A27] transition-colors"
+                style={{ color: '#2D1810' }}
+              >
+                Campusly
+              </span>
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#A06030] leading-none mt-0.5">
+                Admin Console
+              </span>
+            </div>
           </Link>
         </div>
 
@@ -177,13 +180,25 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           style={{ background: '#2D1810', borderRight: sidebarOpen ? '1px solid #3D2214' : 'none' }}
         >
           {/* Sidepanel top controls: Section label & close icon */}
-          <div className="p-3 pb-1 flex items-center justify-between border-b" style={{ borderColor: '#3D2214' }}>
-            <span
-              className="text-[10px] font-bold uppercase tracking-widest block"
-              style={{ color: '#A06030' }}
-            >
-              Management
-            </span>
+          <div className="p-3.5 flex items-center justify-between border-b" style={{ borderColor: '#3D2214' }}>
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md overflow-hidden shrink-0 border border-[#D4A373]/30 bg-[#1A0D07]">
+                <Image
+                  src="/inverted_logo.jpg"
+                  alt="Campusly Logo"
+                  width={24}
+                  height={24}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
+              <span
+                className="text-xs font-bold uppercase tracking-wider"
+                style={{ color: '#FFFFF0' }}
+              >
+                Campusly
+              </span>
+            </div>
             <button
               type="button"
               onClick={() => setSidebarOpen(false)}

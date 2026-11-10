@@ -136,36 +136,41 @@ export default function WelcomeLandingPage() {
       {/* ========================================================
           3. HEADER NAVIGATION (Matching Inspiration Layout)
          ======================================================== */}
-      <header className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 pt-8 pb-4 flex items-center justify-between">
-        {/* Brand Logo & Title - Visible only on mobile view; disappears strictly on web view */}
+      <header className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-6 sm:pt-8 pb-4 flex items-center justify-between gap-4">
+        {/* Brand Logo & Title */}
         <Link
           href="/"
           onClick={handleGetStarted}
-          className="flex sm:hidden items-center gap-2.5 group cursor-pointer"
+          className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer shrink-0"
           aria-label="Campusly Home"
         >
-          <div className="w-7 h-7 rounded-lg overflow-hidden relative shadow-md border border-[#D4A373]/30 bg-[#2D1810] shrink-0">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden relative shadow-md border border-[#D4A373]/40 bg-[#2D1810] shrink-0 group-hover:scale-105 transition-transform duration-200">
             <Image
               src="/inverted_logo.jpg"
-              alt="Campusly"
-              fill
-              className="object-cover"
-              sizes="28px"
+              alt="Campusly Logo"
+              width={40}
+              height={40}
+              className="w-full h-full object-cover"
               priority
             />
           </div>
-          <span className="font-bold text-base tracking-tight text-[#FFFFF0] group-hover:text-[#D4A373] transition-colors">
-            Campusly
-          </span>
+          <div className="flex flex-col">
+            <span className="font-display font-bold text-base sm:text-xl tracking-tight text-[#FFFFF0] group-hover:text-[#D4A373] transition-colors leading-none">
+              Campusly
+            </span>
+            <span className="hidden sm:block text-[10px] font-semibold tracking-wider uppercase text-[#D4A373] leading-none mt-1">
+              ABU Zaria
+            </span>
+          </div>
         </Link>
 
-        {/* Navigation Links - Pushed to right on web view */}
-        <nav className="flex items-center gap-5 sm:gap-9 text-xs sm:text-sm font-medium ml-auto">
+        {/* Navigation Links */}
+        <nav className="flex items-center gap-3.5 sm:gap-7 md:gap-9 text-xs sm:text-sm font-medium shrink-0">
           {/* Active Home Link with Bottom Bar */}
           <button
             type="button"
             onClick={handleGetStarted}
-            className="relative py-1 text-[#FFFFF0] font-bold cursor-pointer transition-colors"
+            className="relative px-1 py-1 text-[#FFFFF0] font-bold cursor-pointer transition-colors whitespace-nowrap"
           >
             <span>Home</span>
             <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FFFFF0] rounded-full" />
@@ -173,21 +178,21 @@ export default function WelcomeLandingPage() {
 
           <Link
             href="/about"
-            className="py-1 text-[#E0D7C6] hover:text-[#FFFFF0] transition-colors"
+            className="px-1 py-1 text-[#E0D7C6] hover:text-[#FFFFF0] transition-colors whitespace-nowrap"
           >
-            About us
+            About
           </Link>
 
           <Link
             href="/explore"
-            className="py-1 text-[#E0D7C6] hover:text-[#FFFFF0] transition-colors"
+            className="px-1 py-1 text-[#E0D7C6] hover:text-[#FFFFF0] transition-colors whitespace-nowrap"
           >
             Explore
           </Link>
 
           <Link
             href="/contact"
-            className="py-1 text-[#E0D7C6] hover:text-[#FFFFF0] transition-colors"
+            className="px-1 py-1 text-[#E0D7C6] hover:text-[#FFFFF0] transition-colors whitespace-nowrap"
           >
             Contact
           </Link>

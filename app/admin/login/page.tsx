@@ -76,12 +76,14 @@ export default function AdminLoginPage() {
 
           {/* Top Brand Logo */}
           <div className="relative z-10 flex items-center gap-2.5">
-            <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-[#D4A373]/30 shadow-xs shrink-0 bg-[#2D1810]">
+            <div className="w-8 h-8 rounded-xl overflow-hidden border border-[#D4A373]/30 shadow-xs shrink-0 bg-[#2D1810]">
               <Image
-                src="/inverted_logo.jfif"
+                src="/inverted_logo.jpg"
                 alt="Campusly Logo"
-                fill
-                className="object-cover"
+                width={32}
+                height={32}
+                className="w-full h-full object-cover"
+                priority
               />
             </div>
             <span className="font-display font-bold text-lg tracking-tight text-[#FFFFF0]">
