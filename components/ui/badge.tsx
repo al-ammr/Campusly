@@ -42,15 +42,15 @@ export interface BadgeProps {
 
 export const Badge: React.FC<BadgeProps> = ({ variant = 'neutral', label, children, size = 'md', className = '' }) => {
   const content = children || label;
-  const sizeClasses = size === 'sm' ? 'px-1.5 py-0.5 text-[10px]' : 'px-2 py-0.5 text-[11px]';
+  const sizeClasses = size === 'sm' ? 'px-2 py-0.5 text-[10px]' : 'px-2.5 py-0.5 text-[11px]';
 
   switch (variant) {
     case 'terracotta':
       return (
         <span
           className={`
-            inline-flex items-center gap-1 ${sizeClasses} rounded font-bold
-            bg-brand text-white select-none
+            inline-flex items-center gap-1 ${sizeClasses} rounded-full font-bold
+            bg-brand text-white shadow-2xs select-none
             ${className}
           `}
         >
@@ -62,8 +62,8 @@ export const Badge: React.FC<BadgeProps> = ({ variant = 'neutral', label, childr
       return (
         <span
           className={`
-            inline-flex items-center gap-1 ${sizeClasses} rounded font-medium
-            bg-stone-border/40 text-ink dark:text-ink-light select-none
+            inline-flex items-center gap-1 ${sizeClasses} rounded-full font-medium
+            bg-surface-container dark:bg-white/[0.06] border border-border/60 dark:border-white/[0.08] text-ink dark:text-ink-muted-dark shadow-2xs select-none
             ${className}
           `}
         >
@@ -75,8 +75,8 @@ export const Badge: React.FC<BadgeProps> = ({ variant = 'neutral', label, childr
       return (
         <span
           className={`
-            inline-flex items-center gap-1 ${sizeClasses} rounded font-bold
-            bg-success dark:bg-success-dark text-surface dark:text-ink select-none
+            inline-flex items-center gap-1.5 ${sizeClasses} rounded-full font-bold
+            bg-emerald-500/15 dark:bg-emerald-500/20 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 shadow-2xs select-none
             ${className}
           `}
         >
@@ -89,8 +89,8 @@ export const Badge: React.FC<BadgeProps> = ({ variant = 'neutral', label, childr
       return (
         <span
           className={`
-            inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold
-            bg-accent dark:bg-accent-dark text-ink select-none
+            inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold
+            bg-amber-500/15 dark:bg-amber-500/20 border border-amber-500/30 text-amber-800 dark:text-amber-200 shadow-2xs select-none
             ${className}
           `}
         >
@@ -103,12 +103,12 @@ export const Badge: React.FC<BadgeProps> = ({ variant = 'neutral', label, childr
       return (
         <span
           className={`
-            inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold
-            border border-border dark:border-border-dark text-ink-muted dark:text-ink-muted-dark bg-surface dark:bg-surface-dark select-none
+            inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold
+            border border-border/80 dark:border-white/[0.08] text-ink-muted dark:text-ink-muted-dark bg-surface dark:bg-white/[0.05] shadow-2xs select-none
             ${className}
           `}
         >
-          <Tag className="w-3 h-3 shrink-0" aria-hidden="true" />
+          <Tag className="w-3 h-3 shrink-0 text-brand dark:text-brand-dark" aria-hidden="true" />
           <span>{label || 'Paid listing'}</span>
         </span>
       );

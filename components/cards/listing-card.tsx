@@ -5,6 +5,7 @@ import { Badge, VerifiedBadge, PaidBadge, ClosingSoonBadge } from '@/components/
 import { CategoryChip } from '@/components/ui/chip';
 import { PublicListingSummary } from '@/lib/api/public-queries';
 import { t } from '@/lib/copy/strings';
+import { Star, ArrowRight, Calendar, Clock } from 'lucide-react';
 
 export interface ListingCardProps {
   listing: PublicListingSummary;
@@ -36,8 +37,8 @@ export function ListingCard({ listing }: ListingCardProps) {
     : null;
 
   return (
-    <CardShell href={href} className="flex flex-col justify-between h-full">
-      <div className="flex flex-col gap-2.5">
+    <CardShell href={href} className="flex flex-col justify-between h-full p-5 sm:p-6">
+      <div className="flex flex-col gap-3.5">
         {/* Top Badges and Category */}
         <div className="flex items-center justify-between gap-2 flex-wrap">
           <CategoryChip
@@ -49,51 +50,55 @@ export function ListingCard({ listing }: ListingCardProps) {
             {listing.verified && <VerifiedBadge />}
             {listing.closing_soon && <ClosingSoonBadge />}
             {listing.kind === 'event' && listing.starts_at && (
-              <Badge variant="neutral" size="sm">
-                {formattedDate}
-              </Badge>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono font-medium text-ink-muted dark:text-[#C4B5A5] bg-surface-container dark:bg-white/[0.05] border border-border/60 dark:border-white/[0.06] shadow-2xs">
+                <Calendar className="w-3 h-3 text-brand dark:text-[#D4A373] shrink-0" strokeWidth={1.75} aria-hidden="true" />
+                <span>{formattedDate}</span>
+              </span>
             )}
             {listing.kind === 'opportunity' && (
-              <Badge variant="terracotta" size="sm">
-                {listing.is_rolling ? 'Rolling' : formattedDeadline ? `Due ${formattedDeadline}` : 'Opportunity'}
-              </Badge>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono font-medium text-brand dark:text-[#E8A87C] bg-brand/10 dark:bg-[#3D2214] border border-brand/20 dark:border-[#D4A373]/20 shadow-2xs">
+                <Clock className="w-3 h-3 shrink-0" strokeWidth={1.75} aria-hidden="true" />
+                <span>{listing.is_rolling ? 'Rolling' : formattedDeadline ? `Due ${formattedDeadline}` : 'Opportunity'}</span>
+              </span>
             )}
           </div>
         </div>
 
         {/* Title & Summary */}
-        <div className="flex flex-col gap-1">
-          <h3 className="font-display font-semibold text-lg text-ink dark:text-ink-dark line-clamp-2 leading-snug">
+        <div className="flex flex-col gap-1.5">
+          <h3 className="font-display font-bold text-base sm:text-lg text-ink dark:text-[#FFFFF0] line-clamp-2 leading-snug group-hover:text-brand dark:group-hover:text-[#D4A373] transition-colors">
             {listing.title}
           </h3>
-          <p className="text-sm text-ink-muted dark:text-ink-muted-dark line-clamp-2 leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink-muted dark:text-[#B8A798] line-clamp-2 leading-relaxed">
             {listing.summary}
           </p>
         </div>
       </div>
 
       {/* Footer / Kind-specific stats */}
-      <div className="mt-4 pt-3 border-t border-sand-dark dark:border-sand-dark-dark flex items-center justify-between text-xs text-ink-muted dark:text-ink-muted-dark">
+      <div className="mt-5 pt-3.5 border-t border-border/60 dark:border-white/[0.08] flex items-center justify-between text-xs text-ink-muted dark:text-[#A8988B]">
         {listing.kind === 'community' && (
-          <span className="flex items-center gap-1 font-medium">
-            <svg
-              className="w-4 h-4 text-warm-ochre fill-current"
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-            >
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
+          <span className="flex items-center gap-1.5 font-medium text-ink-muted dark:text-[#C4B5A5]">
+            <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" strokeWidth={1.5} aria-hidden="true" />
             <span>{listing.star_count ?? 0} stars</span>
           </span>
         )}
         {listing.kind === 'event' && (
-          <span className="font-medium text-cypress-green dark:text-cypress-green-dark">
-            View event details &rarr;
+          <span className="font-semibold text-xs sm:text-sm text-brand dark:text-[#D4A373] flex items-center gap-1.5 group-hover:gap-2 transition-all">
+            <span>View event details</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" strokeWidth={1.75} aria-hidden="true" />
           </span>
         )}
         {listing.kind === 'opportunity' && (
-          <span className="font-medium text-terracotta dark:text-terracotta-dark">
-            View application &rarr;
+          <span className="font-semibold text-xs sm:text-sm text-brand dark:text-[#D4A373] flex items-center gap-1.5 group-hover:gap-2 transition-all">
+            <span>View application</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" strokeWidth={1.75} aria-hidden="true" />
+          </span>
+        )}
+        {listing.kind === 'community' && (
+          <span className="font-semibold text-xs sm:text-sm text-brand dark:text-[#D4A373] flex items-center gap-1.5 group-hover:gap-2 transition-all">
+            <span>Explore society</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" strokeWidth={1.75} aria-hidden="true" />
           </span>
         )}
       </div>

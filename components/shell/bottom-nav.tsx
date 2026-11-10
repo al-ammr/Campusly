@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Compass, Calendar, Sparkles, Megaphone } from 'lucide-react';
+import { Home, Compass, Calendar, Briefcase, Megaphone } from 'lucide-react';
 
 interface TabItem {
   label: string;
@@ -15,7 +15,7 @@ const TABS: TabItem[] = [
   { label: 'Home', href: '/', icon: Home },
   { label: 'Explore', href: '/explore', icon: Compass },
   { label: 'Events', href: '/events', icon: Calendar },
-  { label: 'Opportunities', href: '/opportunities', icon: Sparkles },
+  { label: 'Opportunities', href: '/opportunities', icon: Briefcase },
   { label: 'Spotlight', href: '/spotlight', icon: Megaphone },
 ];
 
@@ -25,7 +25,7 @@ export const BottomNav: React.FC = () => {
   return (
     <nav
       aria-label="Mobile primary"
-      className="fixed bottom-0 left-0 right-0 z-sticky lg:hidden bg-surface/95 dark:bg-surface-dark/95 backdrop-blur-md border-t border-border dark:border-border-dark transition-colors duration-fast pb-[env(safe-area-inset-bottom,0px)]"
+      className="fixed bottom-0 left-0 right-0 z-sticky lg:hidden bg-surface dark:bg-surface-dark border-t border-border dark:border-border-dark transition-colors duration-fast pb-[env(safe-area-inset-bottom,0px)]"
     >
       <div className="grid grid-cols-5 h-16 max-w-md mx-auto items-center">
         {TABS.map((tab) => {

@@ -1,3 +1,5 @@
+import { env } from '@/lib/env';
+
 interface RateLimitRecord {
   count: number;
   resetAt: number;
@@ -13,20 +15,12 @@ export interface RateLimitResult {
   totalLimit: number;
 }
 
-/**
- * Check and increment an atomic rate limiter window.
- *
- * @param key Unique identifier (e.g. `submit:${tokenHash}`)
- * @param limit Maximum allowed events in window
- * @param windowSeconds Window length in seconds
- * @param isWrite Whether this is a state-changing write action
- */
-export async function checkRateLimit(
+function checkMemoryRateLimit(
   key: string,
   limit: number,
   windowSeconds: number,
   isWrite: boolean = false
-): Promise<RateLimitResult> {
+): RateLimitResult {
   const now = Date.now();
   const windowMs = windowSeconds * 1000;
 
@@ -67,7 +61,6 @@ export async function checkRateLimit(
     };
   } catch (error) {
     console.error('[RateLimit Error]:', error);
-    // BP-05 Fallback behaviour: fail closed for writes, open for reads
     if (isWrite) {
       return {
         allowed: false,
@@ -82,6 +75,70 @@ export async function checkRateLimit(
       retryAfterSeconds: 0,
       totalLimit: limit,
     };
+  }
+}
+
+/**
+ * Check and increment an atomic rate limiter window.
+ * Uses Upstash Redis REST pipeline when configured, falling back to memory store.
+ *
+ * @param key Unique identifier (e.g. `submit:${tokenHash}`)
+ * @param limit Maximum allowed events in window
+ * @param windowSeconds Window length in seconds
+ * @param isWrite Whether this is a state-changing write action
+ */
+export async function checkRateLimit(
+  key: string,
+  limit: number,
+  windowSeconds: number,
+  isWrite: boolean = false
+): Promise<RateLimitResult> {
+  // If in test environment or Upstash not configured, use memory store
+  if (env.NODE_ENV === 'test' || !env.UPSTASH_REDIS_REST_URL || !env.UPSTASH_REDIS_REST_TOKEN) {
+    return checkMemoryRateLimit(key, limit, windowSeconds, isWrite);
+  }
+
+  try {
+    const response = await fetch(`${env.UPSTASH_REDIS_REST_URL}/pipeline`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.UPSTASH_REDIS_REST_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify([
+        ['INCR', `ratelimit:${key}`],
+        ['EXPIRE', `ratelimit:${key}`, windowSeconds, 'NX'],
+        ['TTL', `ratelimit:${key}`],
+      ]),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Upstash HTTP Error ${response.status}`);
+    }
+
+    const results = await response.json();
+    const currentCount = Number(results[0]?.result || 1);
+    const ttlSeconds = Number(results[2]?.result || windowSeconds);
+    const retryAfter = ttlSeconds > 0 ? ttlSeconds : windowSeconds;
+
+    if (currentCount > limit) {
+      return {
+        allowed: false,
+        remaining: 0,
+        retryAfterSeconds: retryAfter,
+        totalLimit: limit,
+      };
+    }
+
+    return {
+      allowed: true,
+      remaining: Math.max(0, limit - currentCount),
+      retryAfterSeconds: retryAfter,
+      totalLimit: limit,
+    };
+  } catch (error) {
+    console.warn('[Upstash RateLimit Warning] Falling back to memory store:', error instanceof Error ? error.message : error);
+    return checkMemoryRateLimit(key, limit, windowSeconds, isWrite);
   }
 }
 

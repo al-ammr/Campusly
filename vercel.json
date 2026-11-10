@@ -1,0 +1,41 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/api/v1/jobs/expire-spotlight",
+      "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/v1/jobs/rotate-featured",
+      "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/v1/jobs/close-opportunities",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/v1/jobs/stale-submissions",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/v1/jobs/unpaid-holds",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/v1/jobs/recount",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/v1/jobs/reconciliation-report",
+      "schedule": "0 4 * * *"
+    },
+    {
+      "path": "/api/v1/jobs/retention",
+      "schedule": "0 0 * * 0"
+    },
+    {
+      "path": "/api/v1/jobs/verification-review",
+      "schedule": "0 5 1 * *"
+    }
+  ]
+}

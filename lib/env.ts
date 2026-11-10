@@ -6,6 +6,8 @@ const serverSchema = z.object({
   DATABASE_DIRECT_URL: z.string().optional(),
   REDIS_URL: z.string().min(1, 'REDIS_URL is required'),
   REDIS_TOKEN: z.string().optional(),
+  UPSTASH_REDIS_REST_URL: z.string().url().optional(),
+  UPSTASH_REDIS_REST_TOKEN: z.string().optional(),
   SESSION_SECRET: z.string().min(32, 'SESSION_SECRET must be at least 32 characters'),
   JOB_SECRET: z.string().min(16, 'JOB_SECRET must be at least 16 characters'),
   DATA_ENCRYPTION_KEY: z.string().min(32, 'DATA_ENCRYPTION_KEY must be at least 32 characters'),
@@ -17,6 +19,7 @@ const serverSchema = z.object({
   EMAIL_PROVIDER: z.enum(['mock', 'resend', 'smtp']).default('mock'),
   EMAIL_API_KEY: z.string().optional(),
   EMAIL_FROM: z.string().default('notifications@campusly.abu.edu.ng'),
+  ADMIN_ALERT_EMAIL: z.string().email().optional(),
 });
 
 const clientSchema = z.object({

@@ -9,14 +9,15 @@ export interface SecurityHeadersOptions {
  * Returns mandatory security response headers from D08 Section 5.
  */
 export function getSecurityHeaders(options?: SecurityHeadersOptions): Record<string, string> {
-  const isReportOnly = options?.isReportOnlyCsp ?? true; // Report-only first per BP-05
+  const isReportOnly = options?.isReportOnlyCsp ?? false; // Enforcing CSP per BP-16 release candidate
 
+  const isDev = env.NODE_ENV !== 'production';
   const cspValue = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline'",
+    isDev ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'" : "script-src 'self' 'unsafe-inline'",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
-    "font-src 'self'",
+    "font-src 'self' data:",
     "connect-src 'self'",
     "frame-ancestors 'none'",
     "base-uri 'self'",

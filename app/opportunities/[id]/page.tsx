@@ -1,8 +1,10 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { getPublicListingDetail } from '@/lib/api/public-queries';
 import { CategoryChip } from '@/components/ui/chip';
 import { Badge, ClosingSoonBadge } from '@/components/ui/badge';
+import { ListingActions } from '@/components/interaction/listing-actions';
 import { t } from '@/lib/copy/strings';
 
 interface OpportunityDetailPageProps {
@@ -10,6 +12,33 @@ interface OpportunityDetailPageProps {
 }
 
 export const revalidate = 60;
+
+export async function generateMetadata({ params }: OpportunityDetailPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const opp = await getPublicListingDetail('opportunity', id);
+
+  if (!opp) {
+    return { title: 'Not Found | Campusly' };
+  }
+
+  const ogImageUrl = `/api/v1/og/listing/${opp.id}`;
+
+  return {
+    title: `${opp.title} | Campusly Opportunities`,
+    description: opp.summary,
+    openGraph: {
+      title: `${opp.title} | Campusly Opportunities`,
+      description: opp.summary,
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: opp.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${opp.title} | Campusly Opportunities`,
+      description: opp.summary,
+      images: [ogImageUrl],
+    },
+  };
+}
 
 export default async function OpportunityDetailPage({ params }: OpportunityDetailPageProps) {
   const { id } = await params;
@@ -65,6 +94,16 @@ export default async function OpportunityDetailPage({ params }: OpportunityDetai
         <p className="text-lg text-ink-muted dark:text-ink-muted-dark leading-relaxed">
           {opp.summary}
         </p>
+
+        {/* Opportunity Actions: Share, Report (D06 API-207) */}
+        <div className="pt-2">
+          <ListingActions
+            id={opp.id}
+            kind="opportunity"
+            title={opp.title}
+            summary={opp.summary}
+          />
+        </div>
       </header>
 
       {/* Main Grid */}
@@ -81,7 +120,7 @@ export default async function OpportunityDetailPage({ params }: OpportunityDetai
 
           {/* Eligibility Criteria */}
           {details.eligibility && (
-            <section className="bg-sand-light dark:bg-sand-light-dark p-6 rounded-2xl border border-sand-dark dark:border-sand-dark-dark flex flex-col gap-2">
+            <section className="bg-surface-container dark:bg-canvas-dark p-6 rounded-lg border border-border dark:border-border-dark flex flex-col gap-2 shadow-xs">
               <h3 className="font-semibold text-sm text-ink dark:text-ink-dark">
                 {t('opportunities.detail.eligibility')}
               </h3>
@@ -98,7 +137,7 @@ export default async function OpportunityDetailPage({ params }: OpportunityDetai
                 href={details.apply_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3.5 rounded-xl bg-terracotta hover:bg-terracotta-hover text-white text-sm font-semibold transition-colors shadow-sm inline-flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-terracotta"
+                className="px-8 py-3.5 rounded-md bg-brand hover:bg-brand-strong text-white text-sm font-semibold transition-colors shadow-xs inline-flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand"
               >
                 <span>{t('opportunities.detail.apply')}</span>
                 <span aria-hidden="true">&rarr;</span>
@@ -109,7 +148,7 @@ export default async function OpportunityDetailPage({ params }: OpportunityDetai
 
         {/* Sidebar */}
         <aside className="flex flex-col gap-6">
-          <div className="bg-sand-light dark:bg-sand-light-dark border border-sand-dark dark:border-sand-dark-dark rounded-2xl p-5 flex flex-col gap-4">
+          <div className="bg-surface-container dark:bg-canvas-dark border border-border dark:border-border-dark rounded-lg p-5 flex flex-col gap-4 shadow-xs">
             <div>
               <span className="text-xs font-semibold text-terracotta dark:text-terracotta-dark uppercase tracking-wider block">
                 {t('opportunities.detail.deadline')}

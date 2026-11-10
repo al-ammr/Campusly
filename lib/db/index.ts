@@ -9,10 +9,11 @@ const globalForDb = globalThis as unknown as {
 export const pool =
   globalForDb.campuslyDbPool ??
   new Pool({
-    connectionString: env.DATABASE_URL,
+    connectionString: env.DATABASE_URL || '',
     max: 20, // Max concurrent connections in pool
     idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 5000,
+    connectionTimeoutMillis: env.NODE_ENV === 'test' ? 1000 : 10000,
+    ssl: env.DATABASE_URL?.includes('localhost') ? false : { rejectUnauthorized: false },
   });
 
 if (env.NODE_ENV !== 'production') {

@@ -35,6 +35,7 @@ export const ERROR_CATALOGUE = {
   // 403 Forbidden
   FORBIDDEN_ROLE: { status: 403, code: 'forbidden_role', message: 'Your account role does not have permission for this action.' },
   CSRF_FAILED: { status: 403, code: 'csrf_failed', message: 'Security check failed. Please refresh the page and try again.' },
+  FORGERY_DETECTED: { status: 403, code: 'forgery_detected', message: 'Security check failed. Please refresh the page and try again.' },
 
   // 404 Not Found
   NOT_AVAILABLE: { status: 404, code: 'not_available', message: 'This listing is no longer available or does not exist.' },

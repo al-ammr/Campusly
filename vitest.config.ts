@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'node',
+    pool: 'forks',
     globals: true,
     setupFiles: [],
     include: ['tests/**/*.{test,spec}.{ts,tsx}'],

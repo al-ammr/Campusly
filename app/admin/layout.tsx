@@ -1,0 +1,20 @@
+// app/admin/layout.tsx
+import * as React from 'react';
+import type { Metadata } from 'next';
+import AdminShell from './AdminShell';
+
+export const metadata: Metadata = {
+  title: 'Admin Console | Campusly Academic Registry',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <AdminShell>{children}</AdminShell>;
+}

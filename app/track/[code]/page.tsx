@@ -3,10 +3,18 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import {
+  ArrowLeft,
+  CheckCircle2,
+  Clock,
+  AlertTriangle,
+  XCircle,
+  Send,
+  MessageSquare,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Banner } from '@/components/ui/banner';
 import { useToast } from '@/components/ui/toast';
 import { EmptyState } from '@/components/ui/empty-state';
 
@@ -65,7 +73,7 @@ export default function TrackDetailPage() {
       });
       const json = await res.json();
       if (res.ok && json.data) {
-        showToast({ type: 'success', message: 'Reply sent! Submission returned to review queue.' });
+        showToast({ type: 'success', message: 'Reply sent! Your submission has been returned to the review queue.' });
         setReplyMessage('');
         fetchStatus();
       } else {
@@ -94,7 +102,7 @@ export default function TrackDetailPage() {
       <div className="max-w-xl mx-auto px-4 py-16">
         <EmptyState
           title="Submission Not Found"
-          description="We could not find a submission with tracking code. Please double check your code or submit a new listing."
+          description="We could not find a submission with that tracking code. Please double check the code or submit a new listing."
           actionLabel="Try another code"
           actionHref="/track"
         />
@@ -107,20 +115,21 @@ export default function TrackDetailPage() {
   const isRejected = statusData.status === 'rejected';
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-10 flex flex-col gap-6">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12 flex flex-col gap-6">
       <nav aria-label="Breadcrumb">
         <Link
           href="/track"
-          className="text-xs font-semibold text-terracotta dark:text-terracotta-dark hover:underline flex items-center gap-1"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-brand dark:text-brand-dark hover:underline transition-colors"
         >
-          &larr; Track another submission
+          <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2} />
+          <span>Track Another Submission</span>
         </Link>
       </nav>
 
       {/* Main Status Card */}
-      <div className="p-6 rounded-2xl border border-sand-dark dark:border-sand-dark-dark bg-surface dark:bg-surface-dark flex flex-col gap-5">
+      <div className="rounded-2xl sm:rounded-3xl bg-[#FFFFF0] dark:bg-canvas-dark border border-border dark:border-border-dark p-6 sm:p-8 flex flex-col gap-5 shadow-xs">
         <div className="flex items-center justify-between gap-2 flex-wrap">
-          <span className="font-mono text-sm font-semibold tracking-wider text-ink-muted dark:text-ink-muted-dark">
+          <span className="font-mono text-xs sm:text-sm font-bold tracking-wider text-ink dark:text-ink-dark px-3 py-1 rounded-xl bg-surface-container dark:bg-surface-dark border border-border dark:border-border-dark">
             {statusData.tracking_code}
           </span>
           <Badge
@@ -132,36 +141,36 @@ export default function TrackDetailPage() {
           </Badge>
         </div>
 
-        <div>
-          <h1 className="font-display font-bold text-2xl text-ink dark:text-ink-dark">
+        <div className="space-y-1">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl text-ink dark:text-ink-dark">
             {statusData.title}
           </h1>
-          <span className="text-xs font-semibold uppercase tracking-wider text-terracotta dark:text-terracotta-dark capitalize">
+          <span className="text-xs font-semibold uppercase tracking-wider text-brand dark:text-brand-dark capitalize">
             {statusData.kind}
           </span>
         </div>
 
-        {/* Next step notice */}
-        <div className="p-4 rounded-xl bg-sand-light dark:bg-sand-light-dark border border-sand-dark dark:border-sand-dark-dark">
-          <span className="text-xs font-semibold text-terracotta dark:text-terracotta-dark block uppercase tracking-wider">
-            Current Status Note
+        {/* Current status note */}
+        <div className="p-4 rounded-xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark space-y-1">
+          <span className="text-[11px] font-bold text-ink-muted dark:text-ink-muted-dark uppercase tracking-wider block">
+            Current Status
           </span>
-          <p className="text-sm text-ink dark:text-ink-dark mt-1 font-medium">
+          <p className="text-xs sm:text-sm text-ink dark:text-ink-dark font-medium leading-relaxed">
             {statusData.next_step}
           </p>
         </div>
 
-        {/* Reason details if Rejected or Needs info */}
+        {/* Feedback from Reviewer if rejected or needs info */}
         {statusData.reason && (
-          <div className="p-4 rounded-xl bg-berry-red/10 dark:bg-berry-red-dark/15 border border-berry-red/20 text-ink dark:text-ink-dark">
-            <span className="text-xs font-semibold text-berry-red dark:text-berry-red-dark block uppercase tracking-wider">
+          <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-ink dark:text-ink-dark space-y-1">
+            <span className="text-[11px] font-bold text-amber-900 dark:text-amber-200 uppercase tracking-wider block">
               Feedback from Reviewer
             </span>
-            <p className="text-sm mt-1">{statusData.reason.text}</p>
+            <p className="text-xs sm:text-sm leading-relaxed">{statusData.reason.text}</p>
           </div>
         )}
 
-        {/* Reply Window Countdown for Needs info */}
+        {/* Reply Window Countdown */}
         {isNeedsInfo && statusData.reply_until && (
           <div className="text-xs text-ink-muted dark:text-ink-muted-dark">
             Please reply before{' '}
@@ -176,30 +185,33 @@ export default function TrackDetailPage() {
         )}
       </div>
 
-      {/* Needs Info Interactive Reply Form */}
+      {/* Reply Form */}
       {isNeedsInfo && (
         <form
           onSubmit={handleSendReply}
-          className="p-6 rounded-2xl border border-sand-dark dark:border-sand-dark-dark bg-surface dark:bg-surface-dark flex flex-col gap-4"
+          className="rounded-2xl sm:rounded-3xl bg-[#FFFFF0] dark:bg-canvas-dark border border-border dark:border-border-dark p-6 sm:p-8 flex flex-col gap-4 shadow-xs"
         >
-          <h2 className="font-display font-bold text-lg text-ink dark:text-ink-dark">
-            Reply to Reviewer
-          </h2>
+          <div className="flex items-center gap-2">
+            <MessageSquare className="w-5 h-5 text-brand dark:text-brand-dark" strokeWidth={2} />
+            <h2 className="font-display font-bold text-lg text-ink dark:text-ink-dark">
+              Reply to Reviewer
+            </h2>
+          </div>
           <Textarea
             label="Your Message"
-            placeholder="Provide the requested information or clarification here..."
+            placeholder="Type your response or clarification here..."
             value={replyMessage}
             onChange={(e) => setReplyMessage(e.target.value)}
             rows={4}
             required
-            helperText="Sending a reply automatically moves your submission back to the Pending review queue."
+            helperText="Sending a reply automatically sends your submission back to the review queue."
           />
           <Button
             type="submit"
             variant="primary"
             disabled={sendingReply || !replyMessage.trim()}
           >
-            {sendingReply ? 'Sending reply...' : 'Submit reply to reviewer'}
+            {sendingReply ? 'Sending reply...' : 'Send reply to reviewer'}
           </Button>
         </form>
       )}

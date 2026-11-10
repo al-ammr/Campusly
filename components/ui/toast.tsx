@@ -76,7 +76,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           <div
             role={currentToast.type === 'error' ? 'alert' : 'status'}
             className={`
-              pointer-events-auto flex items-center justify-between gap-3 px-4 py-3 rounded-lg shadow-lg border
+              pointer-events-auto flex items-center justify-between gap-3 px-4 py-3 rounded-lg shadow-md border
               w-full max-w-md transition-all duration-base
               ${
                 currentToast.type === 'error'

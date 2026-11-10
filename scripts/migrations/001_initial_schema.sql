@@ -156,6 +156,7 @@ CREATE TABLE IF NOT EXISTS status_history (
 CREATE TABLE IF NOT EXISTS stars (
   device_id UUID NOT NULL REFERENCES devices(id) ON DELETE CASCADE,
   listing_id UUID NOT NULL REFERENCES listings(id) ON DELETE CASCADE,
+  network_hash VARCHAR(64),
   created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (device_id, listing_id)
 );
@@ -163,8 +164,10 @@ CREATE TABLE IF NOT EXISTS stars (
 -- 10. Reports Table
 CREATE TABLE IF NOT EXISTS reports (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  listing_id UUID NOT NULL REFERENCES listings(id) ON DELETE CASCADE,
+  listing_id UUID REFERENCES listings(id) ON DELETE CASCADE,
+  spotlight_id UUID,
   device_id UUID NOT NULL REFERENCES devices(id) ON DELETE CASCADE,
+  network_hash VARCHAR(64),
   reason VARCHAR(64) NOT NULL,
   note VARCHAR(300),
   status VARCHAR(32) NOT NULL DEFAULT 'open' CHECK (status IN ('open', 'reviewed', 'dismissed', 'actioned')),

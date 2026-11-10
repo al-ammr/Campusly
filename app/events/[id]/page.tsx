@@ -1,8 +1,11 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { Metadata } from 'next';
+import { Calendar } from 'lucide-react';
 import { getPublicListingDetail } from '@/lib/api/public-queries';
 import { CategoryChip } from '@/components/ui/chip';
 import { Badge } from '@/components/ui/badge';
+import { ListingActions } from '@/components/interaction/listing-actions';
 import { t } from '@/lib/copy/strings';
 
 interface EventDetailPageProps {
@@ -10,6 +13,33 @@ interface EventDetailPageProps {
 }
 
 export const revalidate = 60;
+
+export async function generateMetadata({ params }: EventDetailPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const event = await getPublicListingDetail('event', id);
+
+  if (!event) {
+    return { title: 'Not Found | Campusly' };
+  }
+
+  const ogImageUrl = `/api/v1/og/listing/${event.id}`;
+
+  return {
+    title: `${event.title} | Campusly Events`,
+    description: event.summary,
+    openGraph: {
+      title: `${event.title} | Campusly Events`,
+      description: event.summary,
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: event.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${event.title} | Campusly Events`,
+      description: event.summary,
+      images: [ogImageUrl],
+    },
+  };
+}
 
 export default async function EventDetailPage({ params }: EventDetailPageProps) {
   const { id } = await params;
@@ -70,6 +100,17 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
         <p className="text-lg text-ink-muted dark:text-ink-muted-dark leading-relaxed">
           {event.summary}
         </p>
+
+        {/* Event Actions: Add to Calendar, Share, Report (API-110, API-207) */}
+        <div className="pt-2">
+          <ListingActions
+            id={event.id}
+            kind="event"
+            title={event.title}
+            summary={event.summary}
+            icsUrl={`/api/v1/events/${event.id}/calendar.ics`}
+          />
+        </div>
       </header>
 
       {/* Main Grid */}
@@ -92,7 +133,7 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
                 href={details.register_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-xl bg-terracotta hover:bg-terracotta-hover text-white text-sm font-semibold transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-terracotta"
+                className="px-6 py-3 rounded-md bg-brand hover:bg-brand-strong text-white text-sm font-semibold transition-colors shadow-xs focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand"
               >
                 {t('events.detail.register')} &rarr;
               </a>
@@ -100,11 +141,9 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
             <a
               href={`/api/v1/events/${event.id}/calendar.ics`}
               download={`${event.slug}.ics`}
-              className="px-5 py-3 rounded-xl border border-sand-dark dark:border-sand-dark-dark bg-surface dark:bg-surface-dark text-ink dark:text-ink-dark text-sm font-semibold hover:bg-sand-light dark:hover:bg-sand-light-dark transition-colors flex items-center gap-2"
+              className="px-5 py-3 rounded-md border border-border dark:border-border-dark bg-surface dark:bg-surface-dark text-ink dark:text-ink-dark text-sm font-semibold hover:bg-surface-container transition-colors shadow-xs flex items-center gap-2"
             >
-              <svg className="w-4 h-4 text-ink-muted dark:text-ink-muted-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+              <Calendar className="w-4 h-4 text-ink-muted dark:text-ink-muted-dark" strokeWidth={1.5} aria-hidden="true" />
               <span>{t('events.detail.add_calendar')}</span>
             </a>
           </div>
@@ -112,7 +151,7 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
 
         {/* Sidebar: When & Where */}
         <aside className="flex flex-col gap-6">
-          <div className="bg-sand-light dark:bg-sand-light-dark border border-sand-dark dark:border-sand-dark-dark rounded-2xl p-5 flex flex-col gap-4">
+          <div className="bg-surface-container dark:bg-canvas-dark border border-border dark:border-border-dark rounded-lg p-5 flex flex-col gap-4 shadow-xs">
             <div>
               <span className="text-xs font-semibold text-terracotta dark:text-terracotta-dark uppercase tracking-wider block">
                 {t('events.detail.when')}

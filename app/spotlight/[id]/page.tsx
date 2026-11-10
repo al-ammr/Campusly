@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { getSpotlightDetail } from '@/lib/api/public-queries';
 import { PaidBadge, Badge } from '@/components/ui/badge';
 import { Banner } from '@/components/ui/banner';
+import { SpotlightActions } from '@/components/interaction/spotlight-actions';
+import { SpotlightOrderStatus } from '@/components/SpotlightOrderStatus';
 import { t } from '@/lib/copy/strings';
 
 interface SpotlightDetailPageProps {
@@ -13,6 +15,12 @@ export const revalidate = 60;
 
 export default async function SpotlightDetailPage({ params }: SpotlightDetailPageProps) {
   const { id } = await params;
+
+  // Handle Order Reference lookup (e.g. SPT-ABU-XXXXX)
+  if (id.startsWith('SPT-')) {
+    return <SpotlightOrderStatus reference={id} />;
+  }
+
   const item = await getSpotlightDetail(id);
 
   if (!item) {
@@ -53,6 +61,15 @@ export default async function SpotlightDetailPage({ params }: SpotlightDetailPag
         <p className="font-sans font-medium text-xl text-terracotta dark:text-terracotta-dark">
           {item.offer}
         </p>
+
+        {/* Spotlight Actions: Share & Report (API-208) */}
+        <div className="pt-2">
+          <SpotlightActions
+            id={item.id}
+            businessName={item.business_name}
+            offer={item.offer}
+          />
+        </div>
       </header>
 
       {/* Paid Notice Banner */}
@@ -77,7 +94,7 @@ export default async function SpotlightDetailPage({ params }: SpotlightDetailPag
       </section>
 
       {/* Contact Box */}
-      <section className="bg-sand-light dark:bg-sand-light-dark p-6 rounded-2xl border border-sand-dark dark:border-sand-dark-dark flex flex-col gap-3">
+      <section className="bg-surface-container dark:bg-canvas-dark p-6 rounded-lg border border-border dark:border-border-dark flex flex-col gap-3 shadow-xs">
         <h3 className="font-semibold text-sm text-ink dark:text-ink-dark">
           Contact & Bookings
         </h3>

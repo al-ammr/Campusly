@@ -72,6 +72,7 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
     // Lock body scroll
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    const triggerNode = triggerRef?.current;
 
     return () => {
       clearTimeout(focusTimeout);
@@ -79,8 +80,8 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
       document.body.style.overflow = originalOverflow;
 
       // Restore focus to trigger or previous element
-      if (triggerRef?.current) {
-        triggerRef.current.focus();
+      if (triggerNode) {
+        triggerNode.focus();
       } else if (previousActiveElement) {
         previousActiveElement.focus();
       }
@@ -92,11 +93,11 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   return (
     <div
       role="presentation"
-      className="fixed inset-0 z-modal flex items-end lg:items-center justify-center p-0 lg:p-4"
+      className="fixed inset-0 z-[200] flex items-end lg:items-center justify-center p-0 lg:p-4"
     >
       {/* Scrim Overlay */}
       <div
-        className="fixed inset-0 bg-ink/50 dark:bg-black/70 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-black/60 transition-opacity z-[200]"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -109,8 +110,8 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
         aria-labelledby={titleId}
         aria-describedby={description ? descId : undefined}
         className={`
-          relative z-10 w-full max-h-[90vh] bg-raised dark:bg-raised-dark
-          rounded-t-xl lg:rounded-xl shadow-lg border border-border dark:border-border-dark
+          relative z-[201] w-full max-h-[90vh] bg-raised dark:bg-raised-dark
+          rounded-t-lg lg:rounded-lg shadow-md border border-border dark:border-border-dark
           flex flex-col overflow-hidden transition-all duration-base
           lg:max-w-lg lg:w-full
           ${className}

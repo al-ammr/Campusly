@@ -12,14 +12,16 @@
   --color-accent: #E8B53D;
   --color-text: #1F1C18;
   --color-text-muted: #4A453E;
-  --color-surface: #FCF9F4;
-  --color-surface-container: #F3EFEA;
-  --color-border: #E3DCD2;
-  --color-raised: #FFFFFF;
+  --color-surface: #FFFFF0;
+  --color-surface-container: #F7F5EA;
+  --color-border: #E5E1D5;
+  --color-raised: #FFFFF0;
   --color-success: #2B6E3F;
   --color-danger: #BA1A1A;
   --color-info: #1D5FD1;
   --color-focus-ring: #1D5FD1;
+  --color-footer-bg: #7B2E10;
+  --color-brown-rich: #7B2E10;
 
   /* Category Palette - Light */
   --cat-tech-tint: #E6EEFC;
@@ -52,16 +54,16 @@
   --space-6: 32px;
   --space-7: 48px;
 
-  /* Border Radii */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-full: 999px;
+  /* Border Radii: Strictly 3 values + full (De-Vibecode Pass) */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
 
-  /* Elevation */
+  /* Elevation: Strictly 3 flat/border-first levels, zero glowing */
   --elevation-0: none;
-  --elevation-1: 0 1px 3px 0 rgba(31, 28, 24, 0.1);
-  --elevation-2: 0 8px 24px 0 rgba(31, 28, 24, 0.16);
+  --elevation-1: 0 1px 3px 0 rgba(31, 28, 24, 0.08);
+  --elevation-2: 0 4px 12px 0 rgba(31, 28, 24, 0.12);
 
   /* Motion */
   --motion-fast: 120ms ease-out;
@@ -77,9 +79,27 @@
   --z-dialog: 40;
   --z-toast: 50;
 
-  /* Typography Stacks */
-  --font-family-display: var(--font-playfair, 'Playfair Display'), Georgia, Garamond, serif;
-  --font-family-body: var(--font-jakarta, 'Plus Jakarta Sans'), system-ui, -apple-system, sans-serif;
+  /* Single Typography Family Stack (DM Sans self-hosted) */
+  --font-family-base: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-family-display: var(--font-family-base);
+  --font-family-body: var(--font-family-base);
+
+  /* Defined Type Scale (Locked 16px root rem tokens) */
+  --text-display: clamp(2rem, 5vw, 2.5rem);
+  --text-h1: clamp(1.75rem, 4vw, 2rem);
+  --text-h2: 1.5rem;
+  --text-h3: 1.25rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-label: 0.8125rem;
+  --text-caption: 0.75rem;
+}
+
+footer,
+.bg-footer-brown {
+  background-color: #7B2E10 !important;
+  color: #FFFFFF !important;
 }
 
 /* Dark Theme Overrides */
@@ -141,8 +161,8 @@
   --cat-culture-ink: #6B4220;
   --cat-culture-bg: #3C2A1B;
 
-  --elevation-1: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
-  --elevation-2: 0 8px 24px 0 rgba(0, 0, 0, 0.6);
+  --elevation-1: 0 1px 3px 0 rgba(0, 0, 0, 0.35);
+  --elevation-2: 0 4px 12px 0 rgba(0, 0, 0, 0.5);
 }
 
 /* System Preference Dark when data-theme is unset */
@@ -175,8 +195,8 @@
     --cat-health-bg: #4F221F;
     --cat-culture-bg: #3C2A1B;
 
-    --elevation-1: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
-    --elevation-2: 0 8px 24px 0 rgba(0, 0, 0, 0.6);
+    --elevation-1: 0 1px 3px 0 rgba(0, 0, 0, 0.35);
+    --elevation-2: 0 4px 12px 0 rgba(0, 0, 0, 0.5);
   }
 }
 

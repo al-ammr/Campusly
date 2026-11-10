@@ -4,9 +4,12 @@ import { Button } from './button';
 export interface DialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: () => void;
+  onConfirm?: () => void;
   title: string;
-  consequence: string; // One-sentence consequence
+  consequence?: string; // One-sentence consequence
+  description?: string; // Alternative description
+  children?: React.ReactNode;
+  footer?: React.ReactNode;
   confirmLabel?: string;
   cancelLabel?: string;
   isDestructive?: boolean;
@@ -21,6 +24,9 @@ export const Dialog: React.FC<DialogProps> = ({
   onConfirm,
   title,
   consequence,
+  description,
+  children,
+  footer,
   confirmLabel = 'Confirm',
   cancelLabel = 'Cancel',
   isDestructive = false,
@@ -77,14 +83,15 @@ export const Dialog: React.FC<DialogProps> = ({
     document.addEventListener('keydown', handleKeyDown);
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    const triggerNode = triggerRef?.current;
 
     return () => {
       clearTimeout(timer);
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = originalOverflow;
 
-      if (triggerRef?.current) {
-        triggerRef.current.focus();
+      if (triggerNode) {
+        triggerNode.focus();
       } else if (previousActiveElement) {
         previousActiveElement.focus();
       }
@@ -100,7 +107,7 @@ export const Dialog: React.FC<DialogProps> = ({
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-ink/50 dark:bg-black/70 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-black/60 transition-opacity"
         onClick={() => {
           if (!isLoading) onClose();
         }}
@@ -116,7 +123,7 @@ export const Dialog: React.FC<DialogProps> = ({
         aria-describedby={descId}
         className={`
           relative z-10 w-full max-w-md bg-raised dark:bg-raised-dark
-          rounded-xl shadow-lg border border-border dark:border-border-dark
+          rounded-lg shadow-md border border-border dark:border-border-dark
           p-6 flex flex-col gap-4 transition-all duration-fast
           ${className}
         `}
@@ -128,35 +135,43 @@ export const Dialog: React.FC<DialogProps> = ({
           >
             {title}
           </h2>
-          <p
-            id={descId}
-            className="text-sm text-ink-muted dark:text-ink-muted-dark leading-relaxed"
-          >
-            {consequence}
-          </p>
+          {(consequence || description) && (
+            <p
+              id={descId}
+              className="text-sm text-ink-muted dark:text-ink-muted-dark leading-relaxed"
+            >
+              {consequence || description}
+            </p>
+          )}
         </div>
 
-        {/* Action Buttons: Safe action first and focused by default */}
-        <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 pt-2">
-          <Button
-            ref={safeButtonRef}
-            variant="secondary"
-            onClick={onClose}
-            disabled={isLoading}
-            className="w-full sm:w-auto"
-          >
-            {cancelLabel}
-          </Button>
+        {children}
 
-          <Button
-            variant={isDestructive ? 'destructive' : 'primary'}
-            onClick={onConfirm}
-            loading={isLoading}
-            className="w-full sm:w-auto"
-          >
-            {confirmLabel}
-          </Button>
-        </div>
+        {footer ? (
+          footer
+        ) : onConfirm ? (
+          /* Action Buttons: Safe action first and focused by default */
+          <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 pt-2">
+            <Button
+              ref={safeButtonRef}
+              variant="secondary"
+              onClick={onClose}
+              disabled={isLoading}
+              className="w-full sm:w-auto"
+            >
+              {cancelLabel}
+            </Button>
+
+            <Button
+              variant={isDestructive ? 'destructive' : 'primary'}
+              onClick={onConfirm}
+              loading={isLoading}
+              className="w-full sm:w-auto"
+            >
+              {confirmLabel}
+            </Button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

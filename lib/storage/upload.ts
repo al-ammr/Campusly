@@ -2,6 +2,7 @@ import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
 import { query } from '@/lib/db';
+import { isS3Configured, uploadToStorage, getPublicStorageUrl } from './s3';
 
 export const ALLOWED_MIME_TYPES = {
   'image/jpeg': { ext: 'jpg', maxBytes: 3145728, purpose: ['image', 'proof', 'receipt'] },
@@ -129,15 +130,35 @@ export async function storeAttachment(params: {
   const ext = ALLOWED_MIME_TYPES[params.mime].ext;
   const storageKey = `${params.purpose}_${crypto.randomUUID()}.${ext}`;
 
-  // Ensure uploads directory exists
-  const uploadsDir = path.resolve(process.cwd(), 'public/uploads');
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-  }
+  let publicUrl = `/uploads/${storageKey}`;
 
-  // Write file
-  const filePath = path.join(uploadsDir, storageKey);
-  await fs.promises.writeFile(filePath, params.buffer);
+  // If S3/Supabase storage is configured, upload to S3; otherwise save to local disk
+  if (isS3Configured()) {
+    try {
+      const uploadRes = await uploadToStorage({
+        key: storageKey,
+        buffer: params.buffer,
+        mime: params.mime,
+      });
+      publicUrl = uploadRes.publicUrl;
+    } catch (err) {
+      console.warn('[Storage] S3 upload failed, falling back to local filesystem:', err);
+      const uploadsDir = path.resolve(process.cwd(), 'public/uploads');
+      if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+      }
+      const filePath = path.join(uploadsDir, storageKey);
+      await fs.promises.writeFile(filePath, params.buffer);
+    }
+  } else {
+    // Ensure uploads directory exists
+    const uploadsDir = path.resolve(process.cwd(), 'public/uploads');
+    if (!fs.existsSync(uploadsDir)) {
+      fs.mkdirSync(uploadsDir, { recursive: true });
+    }
+    const filePath = path.join(uploadsDir, storageKey);
+    await fs.promises.writeFile(filePath, params.buffer);
+  }
 
   // Record in attachments table (API-224: delete_after set to 24h if not attached)
   const res = await query(
@@ -159,7 +180,7 @@ export async function storeAttachment(params: {
   return {
     id: res.rows[0].id,
     storageKey: res.rows[0].storage_key,
-    url: `/uploads/${storageKey}`,
+    url: publicUrl,
     bytes: res.rows[0].bytes,
   };
 }

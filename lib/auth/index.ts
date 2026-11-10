@@ -1,2 +1,4 @@
-// lib/auth: Admin sessions, TOTP 2FA, Argon2id hashing (D08)
-export {};
+// lib/auth/index.ts
+export * from './passwordHash';
+export * from './session';
+export * from './totp';

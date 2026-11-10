@@ -133,8 +133,8 @@ export function validateListingMove(
       if (toStatus === 'Verified') {
         // Handled above
       } else if (toStatus === 'Hidden') {
-        if (!['reviewer', 'finance', 'lead'].includes(actorRole)) {
-          throw new Error("[Status Error] Only admins may hide a listing.");
+        if (!['reviewer', 'finance', 'lead', 'system'].includes(actorRole)) {
+          throw new Error("[Status Error] Only admins or system may hide a listing.");
         }
         if (!reasonCode) {
           throw new Error("[Status Error] A reason is required to hide a listing.");

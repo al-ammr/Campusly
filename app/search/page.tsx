@@ -61,14 +61,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             name="q"
             defaultValue={cleanQ}
             placeholder={t('search.placeholder')}
-            className="w-full h-12 px-4 rounded-xl border border-sand-dark dark:border-sand-dark-dark bg-surface dark:bg-surface-dark text-ink dark:text-ink-dark text-sm focus:outline-none focus:ring-2 focus:ring-terracotta"
+            className="w-full h-12 px-4 rounded-md border border-border dark:border-border-dark bg-surface dark:bg-canvas-dark text-ink dark:text-ink-dark text-sm focus:outline-none focus:ring-2 focus:ring-brand shadow-xs"
             required
           />
           {type !== 'all' && <input type="hidden" name="type" value={type} />}
           {category && <input type="hidden" name="category" value={category} />}
           <button
             type="submit"
-            className="px-6 h-12 rounded-xl bg-terracotta hover:bg-terracotta-hover text-white text-sm font-semibold transition-colors"
+            className="px-6 h-12 rounded-md bg-brand hover:bg-brand-strong text-white text-sm font-semibold transition-colors shadow-xs"
           >
             Search
           </button>

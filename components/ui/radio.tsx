@@ -164,3 +164,65 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 );
 
 RadioGroup.displayName = 'RadioGroup';
+
+export interface RadioProps {
+  name: string;
+  value: string;
+  label: React.ReactNode;
+  checked?: boolean;
+  disabled?: boolean;
+  onChange?: () => void;
+  className?: string;
+}
+
+export const Radio: React.FC<RadioProps> = ({
+  name,
+  value,
+  label,
+  checked,
+  disabled,
+  onChange,
+  className = '',
+}) => {
+  const inputId = `${name}-${value}`;
+  return (
+    <label
+      htmlFor={inputId}
+      className={`min-h-[44px] inline-flex items-center gap-3 cursor-pointer select-none py-1 ${
+        disabled ? 'opacity-50 cursor-not-allowed' : ''
+      } ${className}`}
+    >
+      <div className="relative flex items-center justify-center w-6 h-6 shrink-0">
+        <input
+          type="radio"
+          id={inputId}
+          name={name}
+          value={value}
+          checked={checked}
+          disabled={disabled}
+          onChange={onChange}
+          className="peer sr-only"
+        />
+        <div
+          className={`
+            w-6 h-6 rounded-full border transition-colors duration-fast flex items-center justify-center
+            peer-focus-visible:outline peer-focus-visible:outline-[3px] peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focusRing
+            ${
+              checked
+                ? 'border-brand dark:border-brand-dark'
+                : 'border-border dark:border-border-dark'
+            }
+            bg-surface dark:bg-surface-dark
+          `}
+        >
+          {checked && (
+            <div className="w-3 h-3 rounded-full bg-brand dark:bg-brand-dark" />
+          )}
+        </div>
+      </div>
+      <span className="text-sm font-medium text-ink dark:text-ink-dark leading-snug">
+        {label}
+      </span>
+    </label>
+  );
+};

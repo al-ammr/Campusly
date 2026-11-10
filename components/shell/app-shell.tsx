@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { usePathname } from 'next/navigation';
 import { SkipLink } from './skip-link';
 import { TopBar } from './top-bar';
 import { BottomNav } from './bottom-nav';
@@ -12,8 +13,14 @@ export interface AppShellProps {
 }
 
 export const AppShell: React.FC<AppShellProps> = ({ children }) => {
+  const pathname = usePathname();
   const [isMoreMenuOpen, setIsMoreMenuOpen] = React.useState<boolean>(false);
   const moreMenuButtonRef = React.useRef<HTMLButtonElement>(null);
+
+  // Dedicated admin portal and full-screen Welcome Landing have their own independent shells
+  if (pathname?.startsWith('/admin') || pathname === '/welcome' || pathname === '/landing') {
+    return <>{children}</>;
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-background dark:bg-background-dark text-ink dark:text-ink-dark transition-colors duration-fast">

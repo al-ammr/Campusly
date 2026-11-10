@@ -74,7 +74,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           <div className="flex justify-center pt-6">
             <Link
               href={`/categories/${slug}?cursor=${next_cursor}`}
-              className="px-6 py-2.5 rounded-xl border border-sand-dark dark:border-sand-dark-dark bg-surface dark:bg-surface-dark text-ink dark:text-ink-dark text-sm font-semibold hover:bg-sand-light dark:hover:bg-sand-light-dark transition-colors"
+              className="px-6 py-2.5 rounded-md border border-border dark:border-border-dark bg-surface dark:bg-surface-dark text-ink dark:text-ink-dark text-sm font-semibold hover:bg-surface-container transition-colors shadow-xs"
             >
               {t('common.load_more')}
             </Link>

@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { query, withTransaction, shutdownDb } from '../lib/db';
+import { Client } from 'pg';
+import { env } from '../lib/env';
 
 export async function runMigrations(direction: 'up' | 'down' = 'up') {
   console.log(`[Migrations] Running migrations (${direction})...`);
@@ -19,11 +20,29 @@ export async function runMigrations(direction: 'up' | 'down' = 'up') {
 
   const sql = fs.readFileSync(filePath, 'utf-8');
 
-  await withTransaction(async (client) => {
-    console.log(`[Migrations] Applying ${filename}...`);
-    await client.query(sql);
-    console.log(`[Migrations] Successfully executed ${filename}`);
+  const connectionString = env.DATABASE_DIRECT_URL || env.DATABASE_URL;
+  console.log(`[Migrations] Connecting to database...`);
+  const client = new Client({
+    connectionString: connectionString || '',
+    ssl: connectionString?.includes('localhost') ? false : { rejectUnauthorized: false },
+    connectionTimeoutMillis: 15000,
   });
+
+  await client.connect();
+
+  try {
+    console.log(`[Migrations] Beginning transaction for ${filename}...`);
+    await client.query('BEGIN');
+    await client.query(sql);
+    await client.query('COMMIT');
+    console.log(`[Migrations] Successfully executed and committed ${filename}`);
+  } catch (err) {
+    console.error(`[Migrations Error]:`, err);
+    await client.query('ROLLBACK');
+    throw err;
+  } finally {
+    await client.end();
+  }
 
   console.log(`[Migrations] Completed successfully.`);
 }
@@ -31,10 +50,12 @@ export async function runMigrations(direction: 'up' | 'down' = 'up') {
 if (require.main === module) {
   const direction = process.argv[2] === 'down' ? 'down' : 'up';
   runMigrations(direction)
-    .then(() => shutdownDb())
-    .catch(async (err) => {
-      console.error('[Migrations Error]:', err);
-      await shutdownDb();
+    .then(() => {
+      console.log('[Migrations Process Exited Cleanly]');
+      process.exit(0);
+    })
+    .catch((err) => {
+      console.error('[Migrations Execution Failed]:', err);
       process.exit(1);
     });
 }

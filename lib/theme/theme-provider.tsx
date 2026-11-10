@@ -34,6 +34,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const active = isDark ? 'dark' : 'light';
       setResolvedTheme(active);
       document.documentElement.setAttribute('data-theme', active);
+      document.documentElement.classList.toggle('dark', isDark);
     };
 
     applyTheme();

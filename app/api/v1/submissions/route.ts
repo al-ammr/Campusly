@@ -20,7 +20,7 @@ const LinkSchema = z.object({
 });
 
 const SubmissionSchema = z.object({
-  kind: z.enum(['community', 'event', 'opportunity']),
+  kind: z.enum(['community', 'event', 'opportunity', 'business']),
   title: z.string().trim().min(3).max(100),
   summary: z.string().trim().min(10).max(160),
   description: z.string().trim().min(20).max(3000),
@@ -35,6 +35,13 @@ const SubmissionSchema = z.object({
   links: z.array(LinkSchema).max(5).optional().default([]),
 
   // Kind-specific details
+  business_details: z
+    .object({
+      location: z.string().min(2).max(160).optional(),
+      offer: z.string().max(160).optional(),
+      whatsapp: z.string().max(80).optional(),
+    })
+    .optional(),
   event_details: z
     .object({
       starts_at: z.string(),
@@ -141,7 +148,8 @@ export const POST = createApiHandler(
         }
         const campusId = campusRes.rows[0].id;
 
-        // Insert into listings
+        // Insert into listings (map 'business' kind to 'community' schema partition with business metadata)
+        const dbKind = body.kind === 'business' ? 'community' : body.kind;
         const listingInsert = await client.query(
           `INSERT INTO listings (
              campus_id, kind, slug, status, category_id, title, summary, description,
@@ -154,7 +162,7 @@ export const POST = createApiHandler(
            ) RETURNING id`,
           [
             campusId,
-            body.kind,
+            dbKind,
             slug,
             body.category_id,
             body.title,
@@ -171,7 +179,21 @@ export const POST = createApiHandler(
         const newListingId = listingInsert.rows[0].id;
 
         // Insert kind meta
-        if (body.kind === 'event' && body.event_details) {
+        if (body.kind === 'business') {
+          await client.query(
+            `INSERT INTO community_meta (
+               listing_id, how_to_join, who_can_join, meeting_times, founded_year, size_band
+             ) VALUES ($1, $2, $3, $4, $5, $6)`,
+            [
+              newListingId,
+              body.business_details?.location || 'Samaru / Kongo Campus',
+              body.business_details?.offer || 'Verified Campus Business',
+              'Open daily during campus business hours',
+              new Date().getFullYear(),
+              'Student Enterprise',
+            ]
+          );
+        } else if (body.kind === 'event' && body.event_details) {
           await client.query(
             `INSERT INTO event_meta (
                listing_id, starts_at, ends_at, venue, map_link, register_link, is_free
