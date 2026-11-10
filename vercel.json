@@ -3,15 +3,15 @@
   "crons": [
     {
       "path": "/api/v1/jobs/expire-spotlight",
-      "schedule": "*/15 * * * *"
+      "schedule": "0 1 * * *"
     },
     {
       "path": "/api/v1/jobs/rotate-featured",
-      "schedule": "0 */6 * * *"
+      "schedule": "0 6 * * *"
     },
     {
       "path": "/api/v1/jobs/close-opportunities",
-      "schedule": "0 * * * *"
+      "schedule": "0 0 * * *"
     },
     {
       "path": "/api/v1/jobs/stale-submissions",
