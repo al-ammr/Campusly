@@ -107,7 +107,7 @@ export const TopBar: React.FC<TopBarProps> = ({
         >
           <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden border border-border/80 dark:border-border-dark shadow-xs shrink-0 bg-surface group-hover:scale-105 transition-transform duration-base">
             <Image
-              src="/favicon.jfif"
+              src="/favicon.jpg"
               alt="Campusly Logo"
               width={40}
               height={40}
@@ -115,7 +115,7 @@ export const TopBar: React.FC<TopBarProps> = ({
               priority
             />
             <Image
-              src="/inverted_logo.jfif"
+              src="/inverted_logo.jpg"
               alt="Campusly Logo"
               width={40}
               height={40}

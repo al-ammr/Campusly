@@ -19,7 +19,7 @@ export default function OfflinePage() {
     <div className="min-h-[80vh] flex flex-col items-center justify-center px-4 py-16 text-center space-y-6">
       <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-border/80 shadow-md mx-auto bg-surface">
         <Image
-          src="/main_logo.jfif"
+          src="/main_logo.jpg"
           alt="Campusly Logo"
           width={80}
           height={80}
@@ -27,7 +27,7 @@ export default function OfflinePage() {
           priority
         />
         <Image
-          src="/inverted_logo.jfif"
+          src="/inverted_logo.jpg"
           alt="Campusly Logo"
           width={80}
           height={80}

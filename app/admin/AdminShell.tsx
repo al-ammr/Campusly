@@ -111,7 +111,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
               style={{ background: '#2D1810' }}
             >
               <Image
-                src="/inverted_logo.jfif"
+                src="/inverted_logo.jpg"
                 alt="Campusly"
                 fill
                 className="object-cover"

@@ -17,13 +17,13 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   icons: {
     icon: [
-      { url: '/favicon.jfif', type: 'image/jpeg' },
+      { url: '/favicon.jpg', type: 'image/jpeg' },
       { url: '/favicon.ico' },
       { url: '/favicon.png', type: 'image/png' },
     ],
     shortcut: ['/favicon.ico'],
     apple: [
-      { url: '/favicon.jfif', type: 'image/jpeg' },
+      { url: '/favicon.jpg', type: 'image/jpeg' },
     ],
   },
   openGraph: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: 'Discover communities, events and opportunities at Ahmadu Bello University.',
     images: [
       {
-        url: '/logo.jfif',
+        url: '/logo.jpg',
         width: 2400,
         height: 1792,
         alt: 'Campusly Official Logo',

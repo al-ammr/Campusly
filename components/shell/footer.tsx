@@ -45,7 +45,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-white/20 shadow-md shrink-0">
                 <Image
-                  src="/inverted_logo.jfif"
+                  src="/inverted_logo.jpg"
                   alt="Campusly Logo"
                   width={40}
                   height={40}
@@ -160,7 +160,7 @@ export const Footer: React.FC = () => {
           <div className="flex items-center gap-2.5">
             <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-black/10 shadow-xs shrink-0">
               <Image
-                src="/main_logo.jfif"
+                src="/main_logo.jpg"
                 alt="Campusly Logo"
                 width={32}
                 height={32}

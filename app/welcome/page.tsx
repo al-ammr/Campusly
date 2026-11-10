@@ -146,7 +146,7 @@ export default function WelcomeLandingPage() {
         >
           <div className="w-7 h-7 rounded-lg overflow-hidden relative shadow-md border border-[#D4A373]/30 bg-[#2D1810] shrink-0">
             <Image
-              src="/inverted_logo.jfif"
+              src="/inverted_logo.jpg"
               alt="Campusly"
               fill
               className="object-cover"

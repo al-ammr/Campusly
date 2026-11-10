@@ -85,7 +85,7 @@ export default function PwaInstallPrompt() {
       <div className="flex items-start justify-between gap-3">
         <div className="relative w-11 h-11 rounded-xl overflow-hidden border border-border shadow-xs shrink-0 bg-surface">
           <Image
-            src="/main_logo.jfif"
+            src="/main_logo.jpg"
             alt="Campusly Icon"
             width={44}
             height={44}
